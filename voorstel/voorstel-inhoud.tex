@@ -18,9 +18,21 @@ Als het onderzoek succesvol is, kan de eigenaar van Carwash Clean Car zijn laadp
 \label{sub:inleiding_literatuurstudie}
 In dit deel van het voorstel van het vooorstel zijn er bronnen gezocht om een voorkennis te hebben over laadpalen voor wagens en het monitoren van de opgewekte energie van de zonnepanelen. Er wordt ook gekeken naar de benodigdheden om de laadpalen aan te sturen en de dataregisters uit te lezen. Als laatste wordt er gekeken naar de mogelijkheden om een progressive web app te maken.
 
-\subsection{Laadpalen voor wagens}%
-\label{sub:laadpalen_voor_wagens}
-Carwash Clean Car heeft 1 laadpaal staan van het merk Alfen en het type is Eve Single S-line. 
+\subsection{Modbus protocol}%
+\label{sub:modbus_protocol}
+Het Modbus protocol is een communicatieprotocol dat gebruikt wordt om dataregisters uit te lezen van verschillende apparaten. Het protocol was origineel geïmplementeerd als een applicatie-level protocol dat gebruikt zou worden om data te versturen over een seriële laag, maar is ondertussen uitgebreid naar implementaties over seriële, TCP/IP en de user datagram protocol (UDP) \autocite{NI2023}. Met dit protocol kunnen er verschillende dataregisters uitgelezen worden, zoals de status van de laadpaal, het verbruik van de laadpaal, de spanning van de laadpaal, de energie dat zonnepanelen momenteel opbrengen. Het protocol zal gebruikt worden om de dataregisters uit te lezen en opdrachten te versturen naar de laadpalen.
+
+\subsection{Backend}%
+\label{sub:backend}
+De backend van de applicatie zal geschreven worden in Node-RED. Node-RED is een visuele tool die gebruikt wordt om applicaties te maken door middel van het verbinden van verschillende nodes. Deze nodes kunnen verschillende taken uitvoeren, zoals het versturen van een e-mail, het versturen van een HTTP request, ... Hier wordt Node-RED gebruikt om de dataregisters uit te lezen van de laadpalen en zonnepanelen. Deze data wordt dan opgevraagd door de progressive web app. De progressive web app zal dan op zijn beurt de data gebruiken om de laadpalen aan te sturen.
+
+\subsection{Progressive web app}%
+\label{sub:progressive_web_app}
+De progressive web app zal geschreven worden in ReactJS. ReactJS is een JavaScript library die gebruikt wordt om user interfaces te maken. De progressive web app zal gebruik maken van de data die opgevraagd wordt door de backend om de laadpalen aan te sturen. Deze data van de zonnepanelen zal in een grafiek gegoten worden zodat de eigenaar een idee heeft van hoeveel energie er wordt verbruikt en hoeveel energie er wordt opgewekt. De progressive web app zal ook een overzicht geven van de laadpalen, waar de eigenaar de laadpalen kan aansturen.
+
+\subsection{Dataregisters}%
+\label{sub:dataregisters}
+Online zijn er lijsten te vinden over de dataregisters van de laadpalen en zonnepanelen. Voor deze bachelorproef wordt er gebruik gemaakt van lijst die beschikbaar is op de website van \textcite{Alfen2020}. De lijst van de dataregisters van de zonnepanelen staat op de website van \textcite{solarinverters2016}.
 
 % Voor literatuurverwijzingen zijn er twee belangrijke commando's:
 % \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
@@ -29,24 +41,35 @@ Carwash Clean Car heeft 1 laadpaal staan van het merk Alfen en het type is Eve S
 %   functie heeft in de zin (bv. ``Uit onderzoek door Doll & Hill (1954) bleek
 %   ...'')
 
-Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
-
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
+\subsection{literatuurstudie}%
+\label{sub:literatuurstudie_methodologie}
+Om het onderzoek te starten wordt er eerst een literatuurstudie gedaan. Hierbij wordt er meer informatie gezocht over de verschillende apparaten die nodig zijn om het onderzoek succesvol te laten verlopen. Er wordt ook gekeken naar de verschillende technologieën die gebruikt kunnen worden om de laadpalen aan te sturen en de dataregisters uit te lezen. Deze informatie komt uit wetenschappelijke artikels en de documentatie van de technologieën. De voorkennis dat er verkregen is, is dan ook de einddeliverable van deze literatuurstudie. Het opstellen van de literatuurstudie gebeurt in de eerste 3 weken van het onderzoek.
 
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
+\subsection{Selectie van de technologieën}%
+\label{sub:selectie_van_de_technologieen}
+Aan de hand van de literatuurstudie wordt er een selectie gemaakt van de technologieën die gebruikt zullen worden in het onderzoek. Er wordt gekeken naar welke technologieën het meest geschikt zijn voor het onderzoek en de haalbaarheid van de implementatie. De einddeliverable van deze fase is een lijst met de technologieën die gebruikt zullen worden in het onderzoek. Deze fase wordt uitgevoerd in de 4de week van het onderzoek.
 
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
+\subsection{Opstellen van de proefopstelling}%
+\label{sub:opstellen_van_de_proefopstelling}
+Na de selectie van de technologieën wordt er een proefopstelling opgesteld. Hierbij wordt er progressive web app gemaakt die de laadpalen kan aansturen in het lokale netwerk. De progressive web app zal ook de data van de zonnepanelen uitlezen, om zo de laadpalen te kunnen aansturen. Naast de progressive web app zal er ook een backend applicatie geschreven worden die de verzoeken afhandelt tussen de progressive web app en de laadpalen. De einddeliverable van deze fase is een werkende proefopstelling. Deze fase wordt uitgevoerd in de 5de tot en met de 9de week van het onderzoek.
 
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
+\subsection{conclusie}%
+\label{sub:conclusie_methodologie}
+Na het opstellen van de proefopstelling wordt er een conclusie geschreven. Hierbij wordt er gekeken of de proefopstelling voldoet aan de verwachtingen en de doelstellingen van het onderzoek. De einddeliverable van deze fase is een conclusie. Deze fase wordt uitgevoerd in de 10de week van het onderzoek.
 
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
 
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
+\begin{figure}[b]
+  \centering
+  \includegraphics[width=0.35\textwidth,height=0.35\textheight,keepaspectratio]{./graphics/mermaid-diagram.png}
+  \caption{flowchart diagram van de methodologie.}
+  \label{fig:flowchart}
+\end{figure}
 
+\newpage
 %---------- Verwachte resultaten ----------------------------------------------
 \section{Verwacht resultaat, conclusie}%
 \label{sec:verwachte_resultaten}
