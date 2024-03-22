@@ -19,3 +19,210 @@ In dit deel van de bachelor proef is er een uitgebreid onderzoek uitgevoerd. Zo 
 \label{sec:stand-van-zaken-zonnepanelen-inleiding}
 
 Carwash Clean Car heeft sinds 2013 zonnepanelen liggen. Deze zonnepanelen zijn geplaatst geweest om de energiefactuur te verlagen, maar de laatste jaren merkt het bedrijf op dat de elektriciteitsfactuur terug begint te stijgen. Nu is het de bedoeling om de data van deze zonnepanelen uit te lezen, om zo de onnodige elektriciteit intensieve bedrijfsprocessen aan te sturen wanneer er genoeg elektriciteit wordt opgewekt met de zonnepanelen.
+
+\subsection{Algemene informatie}
+\label{sec:stand-van-zaken-zonnepanelen-algemene-informatie}
+
+In totaal liggen er 432 ET-Solar zonnepanelen aan bedrijf Carwash Clean Car. Het piekvermogen van 1 zonnepaneel bevat 235 Wp (Watt piek), dus alle panelen samen zorgen dan voor een piekvermogen van 101 520 Wp. Om de opgewekte zonne-energie om te zetten naar elektriciteit zijn er ook omvormers nodig, hiervoor maakt de carwash gebruik van deze omvormers:
+
+\begin{itemize}
+    \item ABB Trio 27,6 TL (2x geïnstalleerd)
+    \item SMA Tripower 15000 TL (1x geïnstalleerd)
+    \item SMA Tripower 17000 TL (1x geïnstalleerd)
+\end{itemize}
+
+In het jaar 2023 werd er in totaal 61 417 kWh (kilowattuur) aan zonne-energie geproduceerd in carwash Clean Car. Van deze 61 417 kWh, was er 34 316 kWh overtollig, deze energie werd dan terug op het net geïnjecteerd. Er zijn ook momenten dat er te weinig energie wordt opgeleverd via de zonnepanelen, hierdoor is er ook aan 33 223 kWh aan elektriciteit aangekocht.
+
+\subsection{Data uitlezen}
+\label{sec:stand-van-zaken-zonnepanelen-data-uitlezen}
+
+\subsubsection{Infrastructuur}
+\label{sec:stand-van-zaken-zonnepanelen-infrastructuur}
+
+Voor het uitlezen van hoeveel energie de zonnepanelen opbrengen zijn er verschillende componenten nodig. Een van de belangrijkste componenten is de omvormer. Dit component zorgt ervoor dat de opgewekte energie van de zonnepanelen omgezet kan worden in elektriciteit. Nadat de energie is omgezet naar elektriciteit gaat er via de Siemens PAC2200 monitoring gebeuren, deze monitoring is een realtime uitlezing van de opgewekte elektriciteit. De reden dat de Siemens PAC2200 gebruikt wordt is omdat deze al geïnstalleerd staat in de Carwash.
+
+\subsubsection{Protocol}
+\label{sec:stand-van-zaken-zonnepanelen-protocol}
+
+Aangezien dat de uitlezing gebeurt door de Siemens PAC2200 aan te spreken, moet er gekeken worden welke protocollen dit apparaat ondersteunt. Onderaan pagina 28 bij subtitel Ethernet van de handleiding van dit product van \textcite{Siemens2022} staan de communicatieprotocollen opgesomd dat kunnen gebruikt worden, deze zijn namelijk:
+
+\begin{itemize}
+    \item Modbus TCP
+    \item Web Server (HTTP)
+    \item SNTP
+    \item DHCP
+\end{itemize}
+
+Het enige protocol dat ook door de omvormers ondersteunt wordt is Modbus TCP, dus is dit het protocol dat er gebruikt gaat worden in de proefopstelling. Later in de literatuurstudie wordt er meer toegelicht over de functies van het Modbus TCP protocol.
+
+\subsubsection{Verkregen data}
+\label{sec:stand-van-zaken-zonnepanelen-verkregen-data}
+
+Eens er een connectie gelegd is met de zonnepanelen, wordt de waarde van de opgewekte energie doorgestuurd naar de backend. De backend berekent of er genoeg energie opgewekt wordt met de zonnepanelen, om zo te kijken of er bepaalde energie intensieve processen mogen gestart worden.
+
+\subsection{Implementatie met de applicatie}
+
+De opgehaalde data zullen weergeven worden in verschillende diagrammen zodat de gebruiker kan kiezen hoe deze wordt weergegeven. Voor deze data makkelijk op te halen in de applicatie zal er een backend voorzien worden, hierover wordt er later in de literatuurstudie meer gezegd.
+
+\subsection{Samenvatting}
+\label{sec:stand-van-zaken-zonnepanelen-samenvatting}
+
+Carwash Clean Car heeft 432 zonnepanelen liggen, waarvan het piekvermogen 101 520 Wp. Deze zonnepanelen zijn aangesloten op omvormers, in de carwash staan er 4 geïnstalleerd. Om de data van de zonnepanelen in realtime te verkrijgen is er ook een Siemens PAC2200 geïnstalleerd. De data kunnen hieruit via het Modbus TCP protocol verkregen worden. Nadien kan de eindgebruiker van de applicatie kiezen uit een bepaald aantal grafieken om de data weer te geven.
+
+\section{laadpaal}
+\label{sec:stand-van-zaken-laadpaal}
+
+\subsection{Inleiding}
+\label{sec:stand-van-zaken-laadpaal-inleiding}
+
+Het laden van elektrische voertuigen wordt als maar essentiëler, aangezien dat de overheid bedrijven stimuleert elektrische voertuigen aan te kopen in plaats van voertuigen op fossiele brandstoffen. Hierdoor heeft Carwash Clean Car een elektrische wagen aangekocht en een laadpaal voor deze auto voorzien. Het bedrijf merkte op dat na de aankoop van deze laadpaal de energie factuur enorm is gestegen, daarmee vroeg de eigenaar zich af of deze laadpaal slim aangestuurd kon worden aan de hand van een custom applicatie.
+
+\subsection{Algemene informatie}
+\label{sec:stand-van-zaken-laadpaal-algemene-informatie}
+
+De laadpaal die gebruikt wordt in het bedrijf is de Alfen Eve Single S-line 3-fase, hierdoor wordt deze studie uitgevoerd op deze laadpaal. Uiteindelijk is het wel de bedoeling dat de eindgebruiker zelf smart apparaten kan toevoegen in deze applicatie. De laadpaal kan tot 11 kW (kilowatt) snel laden. Volgens de datasheet van \textcite{Alfen2023} heeft de geïnstalleerde laadpaal ook de mogelijkheid om slim te laden, hiervoor zijn verschillende ingangen beschikbaar, deze zijn:
+
+\begin{itemize}
+    \item DSMR 4.0-4.2 en SMR5.0
+    \item Externe relais
+    \item Modbus TCP/IP (externe kWh meter)
+    \item Modbus TCP/IP Slave (energiebeheersysteem)
+    \item Modbus RTU (externe kWh meter)
+    \item Télé-information client (slimme meter linky)
+\end{itemize}
+
+Aangezien er een webapplicatie gemaakt zal worden en deze applicatie een energiebeheersysteem zal worden, wordt er een Modbus TCP/IP Slave connectie gebruikt. Op de website van Alfen is er een pdf beschikbaar gesteld waar een lijst in staat met alle dataregisters die gebruikt kunnen worden.
+
+\subsection{Data uitlezen}
+\label{sec:stand-van-zaken-laadpaal-data-uitlezen}
+
+\subsubsection{Infrastructuur}
+\label{sec:stand-van-zaken-laadpaal-infrastructuur}
+
+Voor het uitlezen van de laadpaal is er niet veel nodig, omdat deze al op het internet hangt en er een Modbus TCP/IP Slave connectie op geïnstalleerd staat. Het enige wat er moet gebeuren is het IP-adres opzoeken in de router en de juiste dataregisters opzoeken in de pdf die op de website van \textcite{Alfen2020} beschikbaar gesteld staat. Als deze gegevens geweten zijn, kan er via de backend een connectie gelegd worden met de laadpaal.
+
+\subsubsection{Protocol}
+\label{sec:stand-van-zaken-laadpaal-protocol}
+
+Zoals vermeld bij de \ref{sec:stand-van-zaken-laadpaal-algemene-informatie} zijn er verschillende connectie types beschikbaar op de laadpaal. Het type dat er gebruikt gaat worden is een Modbus TCP/IP Slave connectie. Later in de literatuurstudie wordt er meer toegelicht over de werking van het Modbus TCP/IP Slave protocol.
+
+\subsubsection{Verkregen data}
+\label{sec:stand-van-zaken-laadpaal-verkregen-data}
+
+Nadat er een connectie gelegd is met de laadpaal, kan de data aangesproken worden, door de juiste registerinfo uit de pdf die beschikbaar gesteld staat op de website van Alfen aan te spreken. De meeste data in deze registers zijn nummers. Het precieze datatype staat in de kolom Data Type van de tabel in de pdf van \textcite{Alfen2020}.
+
+\subsection{Implementatie met de applicatie}
+\label{sec:stand-van-zaken-laadpaal-implementatie}
+
+De data zal makkelijk op te halen zijn via de backend die geconnecteerd is met deze apparaten. Deze backend stuurt dan de juiste data door naar de webapplicatie. De webapplicatie zal via de backend kijken of de laadpaal actief is, als deze actief is zal er een schakelaar staan die dat aantoont. Er zal ook een optie zijn om via een drop down menu te selecteren op welk vermogen de laadpaal moet laden. Zo kan de eindgebruiker makkelijk de laadpaal besturen vanop afstand.
+
+\subsection{Samenvatting}
+\label{sec:stand-van-zaken-laadpaal-samenvatting}
+
+In dit deel van de literatuurstudie werd er besproken welke laadpaal er gebruikt wordt in de proefopstelling, deze laadpaal is de Alfen Eve Single S-line 3-fase. Zo werd onderzocht welke communicatieprotocollen er gebruikt kunnen worden om de laadpaal uit te lezen. Uit dit onderzoek kwam de conclusie dat er een Modbus TCP/IP Slave connectie gebruikt kan worden, omdat dit al ingebouwd zit in de laadpaal. Nadat de connectie met de laadpaal gelegd is via de backend, kan deze data weergegeven worden in de webapplicatie door een schakelaar die aantoont of de laadpaal actief is. Er zal ook een optie zijn om via een drop down menu te selecteren op welk vermogen de laadpaal moet laden.
+
+\section{Beluchtingssysteem van het water}
+\label{sec:stand-van-zaken-beluchtingssysteem}
+
+\subsection{Inleiding}
+\label{sec:stand-van-zaken-beluchtingssysteem-inleiding}
+
+Het bedrijf Carwash Clean Car zuivert een deel van het water dat er gebruikt wordt in de carwash zelf, hierdoor is er ook een beluchtingssysteem geïnstalleerd. Dit beluchtingssysteem gebruikt redelijk wat elektriciteit en moet niet continu aanstaan, daarmee kwam de vraag of deze ook smart aangestuurd kon worden aan de hand van een smartplug.
+
+\subsection{Algemene informatie}
+\label{sec:stand-van-zaken-beluchtingssysteem-algemene-informatie}
+
+\textbf{Deze informatie komt nog!!!}
+
+\subsection{Aansturen van het beluchtingssysteem}
+\label{sec:stand-van-zaken-beluchtingssysteem-aansturen}
+
+\subsubsection{Infrastructuur}
+\label{sec:stand-van-zaken-beluchtingssysteem-infrastructuur}
+
+Voor het beluchtingssysteem slim aan te sturen is er een smartplug nodig, deze smartplug zal verbonden moeten zijn met het internet om aangestuurd te kunnen worden.
+
+\subsection{Implementatie met de applicatie}
+\label{sec:stand-van-zaken-beluchtingssysteem-implementatie}
+
+Het aansturen van het beluchtingssysteem kan gebruiksvriendelijk weergeven worden aan de hand van een schakelaar in de applicatie, deze schakelaar dient dan om de smartplug aan of af te zetten.
+
+\subsection{Samenvatting}
+\label{sec:stand-van-zaken-beluchtingssysteem-samenvatting}
+
+Het beluchtingssysteem van carwash Clean Car wordt aangestuurd met een smartplug over het internet. Om dit gebruiksvriendelijk weer te geven in de applicatie wordt er een schakelaar gebruikt dat aantoont of de smartplug aanstaat.
+
+\section{protocollen}
+\label{sec:stand-van-zaken-protocollen}
+
+\subsection{Inleiding}
+\label{sec:stand-van-zaken-protocollen-inleiding}
+
+Aangezien er verschillende protocollen nodig zijn voor de apparaten, zoals de zonnepanelen en laadpaal aan te spreken, worden deze hier uitgebreider besproken. De reden hiervoor is dat er een grondige voorkennis wordt opgedaan over de protocollen die gebruikt kunnen worden. Er wordt ook gekeken of er bepaalde regels zijn, waar rekening mee gehouden moet worden. Als laatste wordt er gekeken of er alternatieve protocollen bestaan.
+
+\subsection{Gebruikte protocollen}
+\label{sec:stand-van-zaken-protocollen-gebruikte-protocollen}
+
+De protocollen die gebruikt gaan worden zijn versies van het Modbus protocol. Zo wordt voor de zonnepanelen Modbus TCP/IP gebruikt en voor de laadpaal zal Modbus TCP/IP Slave connectie gebruikt worden. Modbus is een protocol dat vaak gebruikt wordt bij het connecteren van IoT-apparaten.
+
+\subsection{Info per protocol}
+\label{sec:stand-van-zaken-protocollen-info-per-protocol}
+
+\subsubsection{Modbus TCP/IP}
+\label{sec:stand-van-zaken-protocollen-modbus-tcp-ip}
+
+
+
+\subsubsection{Modbus TCP/IP Slave}
+\label{sec:stand-van-zaken-protocollen-modbus-tcp-ip-slave}
+
+
+
+\subsection{alternatieve protocollen}
+\label{sec:stand-van-zaken-protocollen-alternatieve-protocollen}
+
+
+
+\subsection{Samenvatting}
+\label{sec:stand-van-zaken-protocollen-samenvatting}
+
+
+
+\section{dataregisters}
+\label{sec:stand-van-zaken-dataregisters}
+
+\subsection{Inleiding}
+\label{sec:stand-van-zaken-dataregisters-inleiding}
+
+\subsection{Dataregisters van de zonnepanelen}
+\label{sec:stand-van-zaken-dataregisters-zonnepanelen}
+
+\subsection{Dataregisters van de laadpaal}
+\label{sec:stand-van-zaken-dataregisters-laadpaal}
+
+\subsection{Samenvatting}
+\label{sec:stand-van-zaken-dataregisters-samenvatting}
+
+\section{Backend}
+\label{sec:stand-van-zaken-backend}
+
+\subsection{Inleiding}
+\label{sec:stand-van-zaken-backend-inleiding}
+
+\subsection{Technologieën}
+\label{sec:stand-van-zaken-backend-technologieen}
+
+\subsection{Samenvatting}
+\label{sec:stand-van-zaken-backend-samenvatting}
+
+\section{Webapplicatie}
+\label{sec:stand-van-zaken-webapplicatie}
+
+\subsection{Inleiding}
+\label{sec:stand-van-zaken-webapplicatie-inleiding}
+
+\subsection{Technologieën}
+\label{sec:stand-van-zaken-webapplicatie-technologieen}
+
+\subsection{Samenvatting}
+\label{sec:stand-van-zaken-webapplicatie-samenvatting}
