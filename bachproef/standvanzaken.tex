@@ -113,8 +113,59 @@ Voor de laadpaal wordt het Modbus TCP/IP Slave protocol toegepast, wat wil zegge
 \section{dataregisters}
 \label{sec:stand-van-zaken-dataregisters}
 
+Aangezien het Modbus protocol gebruikt wordt om een verbinding te kunnen maken met de nodige apparatuur, moet ook bekend zijn welke data registers gebruikt moeten worden.\\
+
+Om de metingen van de Siemens PAC2200 op te halen, wordt data register 65 uitgelezen, in dit register staat het totaal actief vermogen opgeslagen. Dit register is nodig om te weten of er energie opgewekt of aangekocht wordt. Nadat de waarde is opgehaald wordt er nog een berekening uitgevoerd om deze waarde in de juiste eenheid weer te geven.\\
+
+Voor de laadpaal aan te sturen zijn er meerdere registers die gebruikt kunnen worden. Hier is een lijst van de data registers die carwash Clean Car belangrijk vindt:
+
+\begin{itemize}
+    \item Modbus Slave Max Current (1210) - Dit register wordt gebruikt om de maximale stroom, die de laadpaal mag gebruiken, te bepalen.
+    \item Real Energy Consumed Sum (390) - Dit register geeft weer hoeveel energie de laadpaal op dat moment gebruikt.
+    \item Mode 3 state (1201) - Dit register geeft de laadmodus van de laadpaal weer.
+    \item Temperature (1102) - Dit register geeft de temperatuur van de laadpaal weer.
+    \item Charge using 1 or 3 phases (1215) - Met dit register kan bepaald worden of de laadpaal in single- of 3-phase moet laden.
+\end{itemize}
+
+Bij deze registers, hebben registers 1210 en 1215 read/write privileges en registers 390, 1201 en 1102 read privileges, dit betekent dat registers 1210 en 1215 ook gebruikt kunnen worden om de laadpaal aan te sturen. Registers 390, 1201 en 1102 daar in tegen kunnen enkel aangesproken worden om waarden uit te lezen.
+
 \section{Backend}
 \label{sec:stand-van-zaken-backend}
 
-\section{Webapplicatie}
-\label{sec:stand-van-zaken-webapplicatie}
+Omdat er verschillende apparaten moeten aangestuurd worden, kan de vraag gesteld worden of dat deze allemaal rechtstreeks via de applicatie worden aangestuurd of dat er tussen de applicatie en de apparatuur, nog een extra service uitgewerkt wordt dat deze dan aanstuurt.\\
+
+De propere oplossing is dat er een backend met verschillende endpoints wordt opgesteld, zodat alle connecties met de apparaten makkelijk te testen vallen. De bedoeling is dan dat de applicatie de juiste waarden naar de juiste endpoints stuurt, zodat de apparaten niet rechtstreeks in contact met de applicatie komen te staan.\\
+
+De endpoints van de backend zijn opgedeeld per apparaat. Dit wil zeggen dat alle requests voor het apparaat in kwestie naar de endpoint van het apparaat in kwestie worden doorgestuurd. In afbeelding \ref{fig:api-endpoints} vindt u de endpoints van de api terug.
+
+\begin{figure}[h]
+    \includegraphics[width=10cm]{./graphics/list-api-endpoints.png}
+    \caption{Een lijst met alle endpoints van de backend.}
+    \label{fig:api-endpoints}
+\end{figure}
+
+\section{Front end}
+\label{sec:stand-van-zaken-front-end}
+
+De front end van de applicatie is een belangrijk deel van het volledige plaatje, omdat de eindgebruiker hier het meeste interactie mee heeft. Het framework dat gebruikt zal worden is React JS, omdat dit de voorkeur was van het bedrijf.\\
+
+Uiteindelijk maakt het niet echt uit welk front end framework er gebruikt wordt, elk framework heeft zo zijn eigen voor en nadelen.
+
+\section{Samenvatting}
+\label{sec:stand-van-zaken-samenvatting}
+
+In de literatuurstudie zijn de belangrijkste spelers aan bod gekomen en is onderzocht geweest wat er nodig is om de applicatie voor carwash clean car te bouwen. Zo is er ook een diepere kennis opgedaan over de belangrijkste spelers, om het project met succes af te kunnen ronden. \\
+
+Er is besproken hoe er aan de data van de zonnepanelen geraakt kon worden en hoe deze data gebruikt kan worden om bepaalde bedrijfsprocessen aan te sturen wanneer er genoeg elektriciteit opgewekt wordt met de zonnepanelen.\\
+
+Het volgende deel van deze literatuurstudie had te maken met de laadpaal die geïnstalleerd staat aan het bedrijf. Zo is er onderzocht geweest hoe deze aangesproken kon worden.\\
+
+Na de eerste 2 hoofdstukken is er besproken hoe het beluchtingssysteem slim bestuurd kan worden. Zo werd door het bedrijf gecommuniceerd dat deze is aangesloten op een smart plug, die verbonden is met het internet. Hierdoor kan deze ook makkelijk van op afstand aan en af gezet worden.\\
+
+Nadien werden de gebruikte protocollen uitgebreid besproken. In dit hoofdstuk werd er eerst een kleine geschiedenis van het Modbus protocol verwoordt en werd uitgelegd hoe het Modbus TCP/IP en Modbus TCP/IP Slave protocol werkt.\\
+
+Na dit hoofdstuk werden de data registers die nodig zijn om te weten of er elektriciteit aangekocht of opgewekt wordt besproken. Zo werden ook de registers in verband met de laadpaal die belangrijk zijn voor carwash clean car opgesomd, hier werd per register ook een klein woordje uitleg bij gegeven om te weten wat welk register juist doet.\\
+
+In het voorlaatste deel van de literatuurstudie werd de backend besproken. Hier werd aangetoond dat deze nodig is om de applicatie makkelijker te beheren. Er werd ook een oplijsting gemaakt van alle endpoints.\\
+
+Als laatste werd de front end besproken, hier werd aangehaald welke front end framework gebruikt wordt in de proefopstelling.
