@@ -46,7 +46,7 @@ Voor het uitlezen van de hoeveelheid energie die wordt opgewekt met de zonnepane
     \item DHCP
 \end{itemize}
 
-Het enige protocol dat ook door de omvormers ondersteund wordt is Modbus TCP, dus dit is het protocol dat gebruikt gaat worden in de proefopstelling. In sectie \ref{sec:stand-van-zaken-protocollen} wordt er meer toegelicht over de functies van het Modbus TCP protocol.\\ 
+Het enige protocol dat ook door de omvormers ondersteund wordt is Modbus TCP, dus dit is het protocol dat gebruikt gaat worden in de proefopstelling. In sectie \ref{sec:stand-van-zaken-protocollen} wordt er meer toegelicht over de functies van het Modbus TCP protocol.\\
 
 Als er een connectie gemaakt is met Siemens PAC2200, wordt de waarde van de opgewekte en aangekochte elektriciteit doorgestuurd naar de backend. Zo kan er berekend worden of er genoeg elektriciteit beschikbaar is om bepaalde energie-intensieve bedrijfsprocessen te starten.\\
 
@@ -129,6 +129,11 @@ Voor de laadpaal aan te sturen zijn er meerdere registers die gebruikt kunnen wo
 
 Bij deze registers, hebben registers 1210 en 1215 read/write privileges en registers 390, 1201 en 1102 read privileges, dit betekent dat registers 1210 en 1215 ook gebruikt kunnen worden om de laadpaal aan te sturen. Registers 390, 1201 en 1102 daar in tegen kunnen enkel aangesproken worden om waarden uit te lezen.
 
+\section{Authenticatie}
+\label{sec:stand-van-zaken-authenticatie}
+
+Er zijn verschillende manieren om een gebruiker te authenticeren in een applicatie. Zo zijn ook verschillende authenticatie providers die gebruikt kunnen worden, maar aangezien de applicatie die gebouwd wordt voor Carwash Clean Car een interne applicatie is, wordt er gebruikgemaakt van een zelf geschreven authenticatie service. Deze service zal een e-mailadres en wachtwoord verwachten van de gebruiker. Als deze correct zijn, zal de service een token terugsturen naar de applicatie. Dit token wordt dan gebruikt om de gebruiker te authenticeren in de applicatie.
+
 \section{Backend}
 \label{sec:stand-van-zaken-backend}
 
@@ -136,13 +141,51 @@ Omdat er verschillende apparaten moeten aangestuurd worden, kan de vraag gesteld
 
 De propere oplossing is dat er een backend met verschillende endpoints wordt opgesteld, zodat alle connecties met de apparaten makkelijk te testen vallen. De bedoeling is dan dat de applicatie de juiste waarden naar de juiste endpoints stuurt, zodat de apparaten niet rechtstreeks in contact met de applicatie komen te staan.\\
 
-De endpoints van de backend zijn opgedeeld per apparaat. Dit wil zeggen dat alle requests voor het apparaat in kwestie naar de endpoint van het apparaat in kwestie worden doorgestuurd. In afbeelding \ref{fig:api-endpoints} vindt u de endpoints van de api terug.
+De endpoints van de backend zijn opgedeeld per apparaat. Dit wil zeggen dat alle requests voor het apparaat in kwestie naar de endpoint van het apparaat in kwestie worden doorgestuurd. In lijst \ref{list:api-endpoints} vindt u de endpoints van de api terug.
 
-\begin{figure}[h]
-    \includegraphics[width=10cm]{./graphics/list-api-endpoints.png}
-    \caption{Een lijst met alle endpoints van de backend.}
-    \label{fig:api-endpoints}
-\end{figure}
+\begin{itemize}
+    \item \textbf{Authenticatie:} \label{list:api-endpoints}
+          \begin{itemize}
+              \item GET-request
+                    \begin{itemize}
+                        \item /login/:email
+                    \end{itemize}
+          \end{itemize}
+    \item \textbf{Zonnepanelen:}
+          \begin{itemize}
+              \item GET-request
+                    \begin{itemize}
+                        \item /electricity/status
+                    \end{itemize}
+          \end{itemize}
+    \item \textbf{Laadpaal:}
+          \begin{itemize}
+              \item GET-request
+                    \begin{itemize}
+                        \item /charging-station/max-current
+                        \item /charging-station/energy-consumed-sum
+                        \item /charging-station/mode
+                        \item /charging-station/temp
+                        \item /charging-station/charge/1-3-phases
+                    \end{itemize}
+              \item POST-request
+                    \begin{itemize}
+                        \item /charging-station/update-max-current
+                        \item /charging-station/charge/update-1-3-phases
+                    \end{itemize}
+          \end{itemize}
+    \item \textbf{Beluchtingssysteem:}
+          \begin{itemize}
+              \item GET-request
+                    \begin{itemize}
+                        \item /blower/status
+                    \end{itemize}
+              \item POST-request
+                    \begin{itemize}
+                        \item /blower/update-status
+                    \end{itemize}
+          \end{itemize}
+\end{itemize}
 
 \section{Front end}
 \label{sec:stand-van-zaken-front-end}
@@ -165,6 +208,8 @@ Na de eerste 2 hoofdstukken is er besproken hoe het beluchtingssysteem slim best
 Nadien werden de gebruikte protocollen uitgebreid besproken. In dit hoofdstuk werd er eerst een kleine geschiedenis van het Modbus protocol verwoordt en werd uitgelegd hoe het Modbus TCP/IP en Modbus TCP/IP Slave protocol werkt.\\
 
 Na dit hoofdstuk werden de data registers die nodig zijn om te weten of er elektriciteit aangekocht of opgewekt wordt besproken. Zo werden ook de registers in verband met de laadpaal die belangrijk zijn voor carwash clean car opgesomd, hier werd per register ook een klein woordje uitleg bij gegeven om te weten wat welk register juist doet.\\
+
+Tussen het hoofdstuk van de data registers en de backend kawm het hoofdstuk over authenticatie aan bod. Hier werd besproken hoe de gebruiker geauthenticeerd wordt in de applicatie.\\
 
 In het voorlaatste deel van de literatuurstudie werd de backend besproken. Hier werd aangetoond dat deze nodig is om de applicatie makkelijker te beheren. Er werd ook een oplijsting gemaakt van alle endpoints.\\
 
