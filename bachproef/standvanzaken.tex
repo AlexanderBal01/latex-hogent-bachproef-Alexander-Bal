@@ -48,9 +48,9 @@ Het laden van de bedrijfswagens is 1 van de niet-dringende bedrijfsprocessen van
 
 \pagebreak
 
-"Er zijn 2 connector types bij laadpalen, namelijk AC connectoren en DC connectoren. Deze 2 types hebben zelf ook nog elk hun eigen onderverdeling. Zo bestaat er binnen de familie van AC connectoren de onderverdeling binnen type 1 en type 2. Het type 1 is de SAE J1772 standaard. Dit type is de standaard in Amerika en Azië en kan tot 7,4 kilowatt snel laden. Het andere type is de IEC 62196-2 standaard dat gebruikt wordt in Europa. Dit type kan tot 43 kilowatt snel laden. Er zijn 3 DC connectoren, namelijk de CHAdeMO, de CCS en de Tesla connectors. De CHAdeMO connector is uitgevonden door Japan en kan een laadsnelheid bereiken tot 100 kilowatt. Het CCS, kort voor Combined Charging System, is een combinatie van een type 2 AC connector en DC connector. De AC connector kan tot 43 kilowatt en de DC connector tot 100 kilowatt snel laden. De laatste connector is de Tesla connector, deze connector maakt gebruik van de 480 volt snellaad technologie. Die technologie zorgt ervoor dat een auto volledig opgeladen kan worden in 1 uur tijd" \autocite{HEMAVATHI2022105013}. \\
+"Er zijn 2 connector types bij laadpalen, namelijk AC connectoren en DC connectoren. Deze 2 types hebben zelf ook nog elk hun eigen onderverdeling. Zo bestaat er binnen de familie van AC connectoren de onderverdeling binnen type 1 en type 2. Het type 1 is de SAE J1772 standaard. Dit type is de standaard in Amerika en Azië en kan tot 7,4 kilowatt snel laden. Het andere type is de IEC 62196-2 standaard dat gebruikt wordt in Europa. Dit type kan tot 43 kilowatt snel laden. Er zijn 3 DC connectoren, namelijk de CHAdeMO, de CCS en de Tesla connectors. De CHAdeMO connector is uitgevonden door Japan en kan een laadsnelheid bereiken tot 100 kilowatt. Het CCS, kort voor Combined Charging System, is een combinatie van een type 2 AC connector en DC connector. De AC connector kan tot 43 kilowatt en de DC connector tot 100 kilowatt snel laden. De laatste connector is de Tesla connector, deze connector maakt gebruik van de 480 volt snellaad technologie. Die technologie zorgt ervoor dat een auto volledig opgeladen kan worden in 1 uur tijd" \autocite{HEMAVATHI2022}. \\
 
-De laadpaal van Carwash Clean Car heeft een AC type 2 connector, maar is beperkt tot een laadsnelheid van 11 kilowatt. Volgens de datasheet van Alfen\footnote{Deze informatie is op 6 mei 2024 teruggevonden op deze website: \url{https://alfen.com/nl-be/file-download/download/public/2753}} komt de geïnstalleerde laadpaal al met verschillende slimme laadfuncties, zoals active load balancing, ook wel dynamic load balancing genoemd. Dit houdt in dat de laadpaal actief het stroomverbruik in de gaten houdt, zodat deze zo het laadvermogen aanpast voor de laadpaal.\footnote{Deze informatie is teruggevonden op 6 mei 2024 op deze website: \url{https://www.elix.nl/load-balancing-alles-wat-je-moet-weten/}} Uiteindelijk bleek dit niet te werken hoe de eigenaar van Carwash Clean Car dit bedoelde. De uitbater wilde dat de laadpaal ingeschakeld werd wanneer er meer zonne-energie is dan dat er gebruikt wordt, dus de laadpaal moet ingeschakeld worden als er 11 kilowatt of meer geproduceerd wordt. De reden dat dit niet werkt is omdat, vanaf er meer zonne-energieproductie is, dan energie dat gebruikt wordt, de waarde op de energiemeter negatief is. De oplossing hiervoor is zelf de laadpaal aan te spreken, dit kan door 1 van de ingang protocollen aan te spreken die beschikbaar zijn op de laadpaal, deze protocollen zijn:
+De laadpaal van Carwash Clean Car heeft een AC type 2 connector, maar is beperkt tot een laadsnelheid van 11 kilowatt. Volgens de datasheet van Alfen\footnote{Deze informatie is op 6 mei 2024 teruggevonden op deze website: \url{https://alfen.com/nl-be/file-download/download/public/2753}} komt de geïnstalleerde laadpaal al met verschillende slimme laad functies, zoals active load balancing, ook wel dynamic load balancing genoemd. Dit houdt in dat de laadpaal actief het stroomverbruik in de gaten houdt, zodat deze zo het laadvermogen aanpast voor de laadpaal.\footnote{Deze informatie is teruggevonden op 6 mei 2024 op deze website: \url{https://www.elix.nl/load-balancing-alles-wat-je-moet-weten/}} Uiteindelijk bleek dit niet te werken hoe de eigenaar van Carwash Clean Car dit bedoelde. De uitbater wilde dat de laadpaal ingeschakeld werd wanneer er meer zonne-energie is dan dat er gebruikt wordt, dus de laadpaal moet ingeschakeld worden als er 11 kilowatt of meer geproduceerd wordt. De reden dat dit niet werkt is omdat, vanaf er meer zonne-energieproductie is, dan energie dat gebruikt wordt, de waarde op de energiemeter negatief is. De oplossing hiervoor is zelf de laadpaal aan te spreken, dit kan door 1 van de ingang protocollen aan te spreken die beschikbaar zijn op de laadpaal, deze protocollen zijn:
 
 \begin{itemize}
     \item DSMR 4.0-4.2 en SMR5.0
@@ -71,15 +71,43 @@ Het protocol dat aangesproken zal worden is het Modbus TCP/IP Slave protocol. Di
 
 Voor het gebruik van bidirectioneel laden van een auto is er een elektrische auto en een laadpaal nodig die dit ondersteunt. Er zijn al verschillende bedrijven die dit concept toepassen op hun wagens. Gelukkig heeft de eigenaar van het bedrijf hier rekening mee gehouden bij de aankoop van de ID. Buzz van Volkswagen. De huidige laadpaal daarentegen heeft deze functionaliteit nog niet, waardoor de functionaliteit nog niet benut kan worden.\\
 
-Het verschil tussen een laadpaal die de functie van bidirectioneel laden niet heeft en een laadpaal die de functie wel heeft, heeft te maken met het type van elektrische stroom, zo bestaan er twee types van elektrische stroom namelijk wisselstroom (AC) en gelijkstroom (DC). Zo kan bidirectioneel laden voor 2 toepassingen worden gebruikt, namelijk Vehicle-to-Grid (V2G) en Vehicle-to-Home (V2H), “vehicle-to-grid is bedoeld voor het verkopen van opgeslagen energie aan het energienet. Terwijl vehicle-to-home daarentegen bedoeld is om de opgeslagen energie later zelf thuis te gebruiken” \autocite{LAZZERONI2019704}.\\
+Het verschil tussen een laadpaal die de functie van bidirectioneel laden niet heeft en een laadpaal die de functie wel heeft, heeft te maken met het type van elektrische stroom, zo bestaan er twee types van elektrische stroom namelijk wisselstroom (AC) en gelijkstroom (DC). Zo kan bidirectioneel laden voor 2 toepassingen worden gebruikt, namelijk Vehicle-to-Grid (V2G) en Vehicle-to-Home (V2H), “vehicle-to-grid is bedoeld voor het verkopen van opgeslagen energie aan het energienet. Terwijl vehicle-to-home daarentegen bedoeld is om de opgeslagen energie later zelf thuis te gebruiken” \autocite{LAZZERONI2019}.\\
 
 Het interessantste voor het bedrijf is de vehicle-to-home oplossing, omdat als de elektriciteit wegvalt, er kan overgeschakeld worden op de batterij van de ID. buzz of reserve batterijen. Het handige hieraan is dat de elektriciteit niet moet wegvallen om de batterij van de ID. buzz te gebruiken, waardoor als er enkel energie aangekocht wordt er andere niet-dringende bedrijfsprocessen hiermee verder kunnen worden aangestuurd. De reden dat er niet voor de vehicle-to-grid oplossing gekozen wordt is omdat het bedrijf minder elektriciteit wil injecteren op het energienet, aangezien hier bijna niets aan verdient wordt. Dit is juist de bedoeling van vehicle-to-grid, om een batterij op te laden en dan te injecteren op het energienet.
+
+\section{Zonnepanelen}
+\label{sec:stand-van-zaken-zonnepanelen}
+
+De zonnepanelen van Carwash Clean Car zijn geplaatst om de maandelijkse energiefactuur te verlagen. Sinds begin 2022 merkt het bedrijf op dat op momenten dat de infrastructuur van de carwash niet actief is, er veel energie geïnjecteerd wordt op het energienet. Als deze infrastructuur en de niet-dringende energie-intensieve bedrijfsprocessen actief zijn, valt op dat dan wel energie aangekocht moet worden, dit zorgt er dan weer voor dat de maandelijkse energiefactuur te duur wordt.\\
+
+Het bedrijf heeft in totaal 432 ET-Solar zonnepanelen op hun domein. Het piekvermogen van 1 paneel bedraagt 235 wattpiek, dus als alle panelen samen hun volledige capaciteit benutten, bedraagt het piekvermogen 101 520 wattpiek. Om de opgewekte zonne-energie om te zetten naar elektriciteit zijn er omvormers nodig, hiervoor maakt de carwash gebruik van deze omvormers:
+
+\begin{itemize}
+    \item ABB Trio 27,6 TL (2x geïnstalleerd)
+    \item SMA Tripower 15000 TL (1x geïnstalleerd)
+    \item SMA Tripower 17000 TL (1x geïnstalleerd)
+\end{itemize}
+
+Voor het uitlezen van de hoeveelheid energie die opgewekt wordt met de zonnepanelen bij het bedrijf zijn er 2 apparaten die geïnstalleerd zijn en gebruikt kunnen worden. Zo kan de opgewekte energie geraadpleegd worden via De Solarlog 1000 van Solarinventors. Het nadeel van de Solarlog 1000 is dat het enkel de opgewekte energie meet en niet de aangekochte energie of het verbruik van energie, maar hier heeft de eigenaar een energiemonitor voor geïnstalleerd, namelijk de Siemens PAC2200. Deze energiemonitor kan het huidige verbruik en aangekochte energie monitoren. De combinatie van de 2 apparaten zorgt ervoor dat alle factoren, zoals het huidige energieverbruik, de huidige opwekking van energie en de energie die geïnjecteerd wordt op het energienet, kunnen geraadpleegd worden.\\
+
+Om het apparaat van Solarlog te integreren met de applicatie, zal deze uitgelezen moeten worden. Aangezien het Modbus TCP protocol op dit apparaat geïnstalleerd staat, zal dit protocol gebruikt moeten worden voor het uitlezen van de opgewekte energie. Als de opgewekte energie uitgelezen is kan deze data weergeven worden aan de hand van een grafiek die eens de data wijzigt geüpdatet wordt.\\
+
+Voor het aanspreken van de Siemens PAC2200 zijn er verschillende protocollen beschikbaar. De ondersteunde communicatieprotocollen van dit apparaat zijn teruggevonden bij de subtitel Ethernet onderaan pagina 28 van de handleiding van Siemens van dit product\footnote{Deze informatie is op 17 april 2024 teruggevonden op deze website: \url{https://cache.industry.siemens.com/dl/files/681/109476681/att_108732/v1/SITRANS_PAC2200_UM_EN-US_A6V1020.pdf}}:
+
+\begin{itemize}
+    \item Modbus TCP
+    \item Web Server (HTTP)
+    \item SNTP
+    \item DHCP
+\end{itemize}
+
+Aangezien er data verkregen moet worden, kunnen er 3 van deze protocollen niet gebruikt worden, namelijk de webserver, het SNTP protocol en het DHCP protocol. Hierdoor is er geen keuze mogelijk, aangezien er maar 4 protocollen zijn. Om de data te verkrijgen zal dus het Modbus TCP protocol gebruikt moeten worden. In sectie \$\$ wordt er dieper ingegaan op het Modbus protocol.
 
 \section{oud}
 \label{sec:stand-van-zaken-oude}
 
-\section{Zonnepanelen}
-\label{sec:stand-van-zaken-zonnepanelen}
+\section{Zonnepanelen oud}
+\label{sec:stand-van-zaken-zonnepanelen-oud}
 
 Carwash Clean Car heeft sinds 2013 zonnepanelen. Deze zonnepanelen zijn geplaatst om de maandelijkse elektriciteitsfactuur te verlagen. Maar de laatste jaren merkt het bedrijf op dat de maandelijkse elektriciteitsfactuur terug begint te stijgen, de oorzaak van deze stijging is dat er op momenten te weinig elektriciteit wordt opgewekt met de zonnepanelen om alle elektriciteit-intensieve bedrijfsprocessen aan te sturen. Nu is het de bedoeling om de data van de zonnepanelen uit te lezen, om zo de niet-dringende elektriciteit-intensieve bedrijfsprocessen aan te sturen wanneer er genoeg elektriciteit wordt opgewekt met deze zonnepanelen.\\
 
