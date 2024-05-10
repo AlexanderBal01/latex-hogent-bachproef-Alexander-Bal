@@ -7,33 +7,38 @@
 
 % Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
 
-Zoals in hoofdstuk \ref{ch:inleiding} werd vermeld, wordt er een oplossing gezocht voor het slim aansturen van bepaalde bedrijfsprocessen van het bedrijf Carwash Clean Car. Voordat er oplossingen kunnen worden besproken, is het belangrijk dat er een grondige voorkennis wordt opgedaan over het onderwerp. Deze literatuurstudie zal daarbij helpen. Om tot een geschikte oplossing te komen, is de literatuurstudie opgedeeld in 3 delen.\\
+Zoals in hoofdstuk \ref{ch:inleiding} werd vermeld, wordt er een oplossing gezocht voor het slim aansturen van bepaalde bedrijfsprocessen van het bedrijf Carwash Clean Car. Voordat er oplossingen kunnen worden besproken, is het belangrijk dat er een grondige voorkennis wordt opgedaan over het onderwerp. Deze literatuurstudie zal daarbij helpen. Om tot een geschikte oplossing te komen, is de literatuurstudie opgedeeld in 3 delen. In afbeelding \ref{fig:voorlopige-proefopstelling} wordt de voorlopige versie van de proefopstelling weergegeven, zodat een idee kan gevormd worden over hoe alles zal samenwerken.
 
-Het eerste deel bestaat uit het bepalen van het huidige energieverbruik van de belangrijkste en niet-dringende energieverbruikers, om dan concepten en methoden te bespreken die gebruikt kunnen worden om de energiefactuur te verlagen. In het tweede deel wordt dan namelijk onderzocht hoe alle componenten, zoals de zonnepanelen, de laadpaal, het beluchtingssysteem van het water, de industriële droogkast, … de gevonden concepten en methoden kunnen toepassen. Het laatste deel van deze studie bestaat uit het onderzoeken van de samenwerking van de componenten die gebruikt worden in de proefopstelling.\\
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=20em]{./graphics/voorlopige-proefopstelling.png}
+    \caption{Voorlopige ilustratie van de proefopstelling}
+     \label{fig:voorlopige-proefopstelling}
+\end{figure}
 
-Nadien wordt er een proefopstelling gemaakt waarin alle componenten met een webapplicatie verbonden worden, deze webapplicatie zal het makkelijker maken om de componenten aan te sturen.
+\pagebreak
 
-\section{Hoe kwam Carwash Clean Car op dit idee?}
+\section{Hoe kwam carwash Clean Car op dit idee?}
 \label{sec:stand-van-zaken-idee}
 
-Carwash Clean Car heeft in 2013 zonnepanelen geplaatst, omdat de eigenaar toen al merkte dat als alle apparatuur van de carwash samen moest aanstaan, deze de energiefactuur te duur maakte. Wetende in het achterhoofd dat er plannen waren om een extra Self Carwash met 5 wasboxen te plaatsen op het domein. Toen deze self Carwash geplaatst was in 2015, merkte ze toch op dat er niet altijd genoeg zonne-energie werd opgeleverd door de zonnepanelen, doordat er niet altijd genoeg zon zat om de elektriciteit-intensieve bedrijfsprocessen aan te sturen. Er werd dus nog altijd veel energie aangekocht. Boven op het tekort aan zonne-energie, werden de energieprijzen altijd maar duurder.\\
+Carwash Clean Car heeft in 2013 zonnepanelen geplaatst, omdat de eigenaar toen al merkte dat als alle apparatuur van de carwash samen moest aanstaan, deze de energiefactuur te duur maakte. Hierbij werd ook rekening gehouden met de plannen om een extra self carwash met 5 wasboxen te plaatsen op het domein. Toen deze self carwash geplaatst was in 2015, merkte de eigenaar toch op dat er niet altijd genoeg zonne-energie werd geproduceerd door de zonnepanelen, om de elektriciteit-intensieve bedrijfsprocessen aan te sturen. Er werd dus nog altijd veel energie aangekocht. Bovenop het tekort aan zonne-energie, werden de energieprijzen steeds maar duurder.\\
 
-Een paar jaar later besliste het bedrijf om hun bedrijfswagen op fossiele brandstof te vervangen door een elektrische wagen in de plaats te kopen. Hierdoor werd er ook een laadpaal van Alfen geplaatst die slim aan te sturen is. Zo kwam Carwash Clean Car op het idee om alle niet-dringende bedrijfsprocessen slim aan te sturen door middel van een custom webapplicatie.
+Een paar jaar later besliste het bedrijf om hun bedrijfswagen op fossiele brandstof te vervangen door een elektrische wagen. Hierdoor werd er ook een laadpaal van Alfen geplaatst die slim aan te sturen is. Zo kwam carwash Clean Car op het idee om alle niet-dringende bedrijfsprocessen slim aan te sturen door middel van een custom webapplicatie en daarbij het laden van die wagen op een slimme manier te laten gebeuren.
 
 \section{Energieverbruikers van carwash Clean Car}
 \label{sec:stand-van-zaken-energieverbruikers}
 
-Aangezien deze casus zich richt op een carwash, is 1 van de belangrijkste energieverbruikers de machines en infrastructuur die gebruikt wordt om de tunnel van de carwash aan te sturen. De tunnel kan opgedeeld worden in 2 delen, het eerste deel dient voor het wassen van de auto's, wat gemiddeld 5 kilowattuur verbruikt per auto. Het tweede deel van de tunnel zorgt voor het drogen van de auto's, dit verbruikt gemiddeld 50 kilowattuur.\\
+Aangezien deze casus zich richt op een carwash, is 1 van de belangrijkste energieverbruikers de machines en infrastructuur die gebruikt wordt om de tunnel van de carwash aan te sturen. De tunnel kan opgedeeld worden in 2 delen, het eerste deel dient voor het wassen van de auto’s, wat gemiddeld 5 kilowatt verbruikt per auto. Het tweede deel van de tunnel zorgt voor het drogen van de auto’s, dit verbruikt gemiddeld 50 kilowatt.\\
 
-Naast deze tunnel is er ook nog de self carwash, die op het domein gevestigd is. De infrastructuur van deze self carwash hoort dan ook bij de belangrijkste energieverbruikers van het bedrijf. De selfcarwash bestaat uit 5 wasboxen. Als 1 box in gebruik is, wordt 1 pomp geactiveerd en wordt er 2 kilowattuur verbruikt.. Voor de 5 wasboxen tegelijk, wordt het verbruik 10 kilowattuur, omdat elke box een eigen pomp heeft.\\
+Naast deze tunnel is er ook nog de self carwash, die op het domein gevestigd is. De infrastructuur van deze self carwash hoort dan ook bij de belangrijkste energieverbruikers van het bedrijf. De selfcarwash bestaat uit 5 wasboxen. Als 1 box in gebruik is, wordt 1 pomp geactiveerd en wordt er 2 kilowatt verbruikt. Voor de 5 wasboxen tegelijk, wordt het verbruik dus 10 kilowatt.\\
 
-Na de 2 belangrijkste energieverbruikers zijn er ook verschillende niet-dringende energieverbruikers die toch wel belangrijk zijn voor de eigenaars, zo staat er een laadpaal geïnstalleerd, deze laadpaal wordt gebruikt voor het opladen van elektrische voertuigen, zodat deze kunnen gebruikt worden wanneer het nodig is. Het verbruik van de laadpaal kan zelf ingesteld worden tot en met 11 kilowattuur.\\
+Na de 2 belangrijkste energieverbruikers zijn er ook verschillende niet-dringende energieverbruikers die toch wel belangrijk zijn voor de eigenaars, zo staat er een laadpaal geïnstalleerd, deze laadpaal wordt gebruikt voor het opladen van elektrische voertuigen, zodat deze kunnen gebruikt worden wanneer het nodig is. Het laadvermogen van de laadpaal kan zelf ingesteld worden tot en met 11 kilowatt.\\
 
-De tweede niet-dringende energieverbruiker is het beluchtingssysteem van het water, dit systeem is nodig om te voorkomen dat er algen ontstaan in het zelf gerecycleerde water in de waterputten. Het beluchtingssysteem heeft een verbruik van 3 kilowattuur. Deze 3 kilowattuur fluctueert niet, wat betekent dat het beluchtingssysteem continu 3 kilowattuur verbruikt, wanneer ingeschakeld.\\
+De tweede niet-dringende energieverbruiker is het beluchtingssysteem van het water, dit systeem is nodig om te voorkomen dat er algen ontstaan in het zelf gerecycleerde water in de waterputten. Het beluchtingssysteem heeft een vermogen van 3 kilowatt. Deze 3 kilowatt fluctueert niet, wat betekent dat het beluchtingssysteem continu 3 kilowatt verbruikt wanneer deze ingeschakeld wordt. Het systeem is niet continu ingeschakeld om schuimvorming te voorkomen.\\
 
-De laatste energieverbruiker die besproken wordt is de industriële droogkast, deze droogkast wordt gebruikt voor het drogen van de werkkledij en de microvezeldoeken die gebruikt worden bij dieptereinigingen. De reden dat deze droogkast besproken wordt is omdat deze al verouderd en energie-intensief is. De droogkast is tot nu toe het niet-dringende bedrijfsproces met het meeste energieverbruik. Het energieverbruik is namelijk 14 kilowattuur.\\
+De laatste energieverbruiker die besproken wordt is de industriële droogkast, deze droogkast wordt gebruikt voor het drogen van de werkkledij en de microvezeldoeken die gebruikt worden bij dieptereinigingen. De reden dat deze droogkast besproken wordt is omdat deze al verouderd en energie-intensief is. De droogkast is tot nu toe het niet-dringende bedrijfsproces met het hoogste verbruik. Het energieverbruik is namelijk 14 kilowatt.\\
 
-De tunnel en self carwash worden in de proefopstelling niet aangesproken, omdat deze niet zomaar uitgeschakeld mogen worden. De industriële droogkast wordt na deze bachelorproef pas toegevoegd aan de proefopstelling, de oorzaak hiervan is dat de droogkast de componenten om de droogkast smart aan te sturen nog besteld moeten worden. Al de rest van de besproken niet-dringende bedrijfsprocessen zullen wel al geïntegreerd worden met webapplicatie.
+De tunnel en self carwash worden in de proefopstelling niet aangesproken, omdat deze niet zomaar uitgeschakeld mogen worden. De industriële droogkast wordt na deze bachelorproef pas toegevoegd aan de proefopstelling, de oorzaak hiervan is dat de componenten om de droogkast slim aan te sturen nog besteld moeten worden. Al de rest van de besproken niet-dringende bedrijfsprocessen zullen wel al geïntegreerd worden met webapplicatie. 
 
 \section{Peak shaving}
 \label{sec:stand-van-zaken-peak-shaving}
@@ -45,18 +50,23 @@ Er zijn verschillende methoden om peak shaving te bereiken, “1 methode van pea
 \section{Bidirectioneel laden van batterijen}
 \label{sec:stand-van-zaken-bidirectioneel-laden}
 
-1 van de concepten die aan het opkomen is bij laadpalen is bidirectioneel laden. Dit betekent dat, als een auto opgeladen wordt, deze auto zijn batterij gebruikt kan worden om energie op te slaan voor later gebruik. Dit zou handig zijn om niet-dringende bedrijfsprocessen aan te sturen als er energie aangekocht wordt. Dit concept kan ook toegepast worden op reserve batterijen die geïnstalleerd worden voor als de elektriciteit wegvalt.\\
+1 van de concepten die aan het opkomen is bij laadpalen is bidirectioneel laden. Dit betekent dat, als een auto opgeladen wordt, deze auto batterij gebruikt kan worden om energie op te slaan voor later gebruik. Wat betekent dat de wagen ook energie kan teruggeven via de laadpaal. Dit zou handig zijn om niet-dringende bedrijfsprocessen aan te sturen als er energie aangekocht wordt. Dit concept kan ook toegepast worden op reserve batterijen die geïnstalleerd worden voor als de elektriciteit wegvalt.\\
 
-Voor het gebruik van bidirectioneel laden van een auto is er een elektrische auto en een laadpaal nodig die dit ondersteunt. Er zijn al verschillende bedrijven die dit concept toepassen op hun wagens. Gelukkig heeft de eigenaar van het bedrijf hier rekening mee gehouden bij de aankoop van de ID. Buzz van Volkswagen. De huidige laadpaal daarentegen heeft deze functionaliteit nog niet, waardoor de functionaliteit nog niet benut kan worden.\\
+Voor het gebruik van bidirectioneel laden van een auto is er een elektrische auto en een laadpaal nodig die dit ondersteunt. Er zijn al verschillende bedrijven die dit concept toepassen op hun wagens. Gelukkig heeft de eigenaar van het bedrijf hier rekening mee gehouden bij de aankoop van de ID. Buzz van Volkswagen. De huidige laadpaal daarentegen heeft deze functionaliteit nog niet, waardoor deze nog niet benut kan worden.\\
 
 Het verschil tussen een laadpaal die de functie van bidirectioneel laden niet heeft en een laadpaal die de functie wel heeft, heeft te maken met het type van elektrische stroom, zo bestaan er twee types van elektrische stroom namelijk wisselstroom (AC) en gelijkstroom (DC). Zo kan bidirectioneel laden voor 2 toepassingen worden gebruikt, namelijk Vehicle-to-Grid (V2G) en Vehicle-to-Home (V2H), “vehicle-to-grid is bedoeld voor het verkopen van opgeslagen energie aan het energienet. Terwijl vehicle-to-home daarentegen bedoeld is om de opgeslagen energie later zelf thuis te gebruiken” \autocite{LAZZERONI2019}.\\
 
-Het interessantste voor het bedrijf is de vehicle-to-home oplossing, omdat als de elektriciteit wegvalt, er kan overgeschakeld worden op de batterij van de ID. buzz of reserve batterijen. Het handige hieraan is dat de elektriciteit niet moet wegvallen om de batterij van de ID. buzz te gebruiken, waardoor als er enkel energie aangekocht wordt er andere niet-dringende bedrijfsprocessen hiermee verder kunnen worden aangestuurd. De reden dat er niet voor de vehicle-to-grid oplossing gekozen wordt is omdat het bedrijf minder elektriciteit wil injecteren op het energienet, aangezien hier bijna niets aan verdient wordt. Dit is juist de bedoeling van vehicle-to-grid, om een batterij op te laden en dan te injecteren op het energienet.
+Het interessantste voor het bedrijf is de vehicle-to-home oplossing, omdat als de elektriciteit wegvalt, er kan overgeschakeld worden op de batterij van de ID. buzz of reserve batterijen. Het voordeel hiervan is dat de elektriciteit niet moet wegvallen om de batterij van de ID. buzz te gebruiken, waardoor als er enkel energie aangekocht wordt er andere niet-dringende bedrijfsprocessen hiermee verder kunnen worden aangestuurd. De reden dat er niet voor de vehicle-to-grid oplossing gekozen wordt is omdat het bedrijf minder elektriciteit wil injecteren op het energienet, aangezien hier bijna niets aan verdiend wordt. Het is immers juist de bedoeling van vehicle-to-grid, om een batterij op te laden en dan te injecteren op het energienet. In dit specifieke geval wordt er evenwel ingezet op het optimaliseren van het eigen verbruik en het minimaliseren van de injectie.
+
+\subsection{Wat is de impact van bidirectioneel laden op batterijen uit elektrische voertuigen?}
+\label{sec:stand-van-zaken-bidirectioneel-laden-impact}
+
+Deze tekst moet nog geschreven worden.
 
 \section{Algoritmen}
 \label{sec:stand-van-zaken-algoritmen}
 
-Om de niet-dringende bedrijfsprocessen slim aan te sturen, kunnen er verschillende algoritmen gebruikt worden. Deze algoritmen worden bepaald aan de hand van de voorwaarden die opgelegd zijn door de eigenaar van het bedrijf. De basisvoorwaarden die bij Carwash Clean Car opgelegd zijn, zijn dat de niet-dringende bedrijfsprocessen enkel mogen aangestuurd worden als er meer energie opgewekt wordt dan dat er verbruikt wordt.\\
+Om de niet-dringende bedrijfsprocessen slim aan te sturen, kunnen er verschillende algoritmen gebruikt worden. Deze algoritmen worden bepaald aan de hand van de voorwaarden die opgelegd zijn door de eigenaar van het bedrijf. De basisvoorwaarden die bij carwash Clean Car opgelegd zijn, zijn dat de niet-dringende bedrijfsprocessen enkel mogen aangestuurd worden als er meer energie opgewekt wordt dan dat er verbruikt wordt.\\
 
 Er zijn verschillende soorten algoritmen die aan de hand van de basisvoorwaarden gebruikt kunnen worden, zoals:
 
@@ -75,12 +85,12 @@ Dit algoritme zal een lijst teruggeven met bedrijfsprocessen die aangestuurd kun
 \subsection{Het algoritme voor het aansturen van bedrijfsprocessen}
 \label{sec:stand-van-zaken-algoritme-aansturen}
 
-De titel van dit algoritme verklapt al waarvoor dit algoritme gebruikt zal worden, namelijk het inschakelen van bedrijfsprocessen. Dit gebeurt aan de hand van de laatste lijst die gegenereerd is met het algoritme voor het optimaal gebruik van bedrijfsprocessen.
+Dit algoritme zal gebruikt worden voor het in en uitschakelen van bedrijfsprocessen. Dit gebeurt aan de hand van de laatste lijst die gegenereerd is met het algoritme voor het optimaal gebruik van bedrijfsprocessen.
 
 \section{energiebeheersysteem}
 \label{sec:stand-van-zaken-energiebeheersysteem}
 
-De titel van deze sectie verklapt eigenlijk al wat dit zal betekenen, namelijk het gebruik van een systeem voor het beheren en monitoren van de energie die verbruikt wordt binnen het bedrijf. Volgens \textcite{FALOPE2024} kunnen energiebeheersystemen opgedeeld worden in 2 groepen, namelijk voorspellende energiebeheersystemen en realtime energiebeheersystemen.\\
+Dit is een systeem voor het beheren en monitoren van de energie die verbruikt wordt binnen het bedrijf. Volgens \textcite{FALOPE2024} kunnen energiebeheersystemen opgedeeld worden in 2 groepen, namelijk voorspellende energiebeheersystemen en realtime energiebeheersystemen.\\
 
 “Een voorspellend energiebeheersysteem maakt gebruik van historische data om een belasting voorspelling, een energievoorziening voorspelling of een combinatie van beide te genereren. Deze voorspellingen zorgen ervoor dat het energieaanbod optimaal overeenstemt met de vraag naar energie. Omdat voorspellingen echter niet 100~\% wetenschappelijk ondersteund zijn, moet realtime planning van de energiebelasting geïntegreerd worden om voorspellingsfouten aan te passen. Een realtime energiebeheersysteem daarentegen, zal gebruikmaken van algoritmen om de regeling van de energiebelasting of energielevering aan te passen” \autocite{FALOPE2024}.\\
 
@@ -109,7 +119,7 @@ Het protocol dat aangesproken zal worden is het Modbus TCP/IP Slave protocol. Di
 \section{Zonnepanelen}
 \label{sec:stand-van-zaken-zonnepanelen}
 
-De zonnepanelen van Carwash Clean Car zijn geplaatst om de maandelijkse energiefactuur te verlagen. Sinds begin 2022 merkt het bedrijf op dat op momenten dat de infrastructuur van de carwash niet actief is, er veel energie geïnjecteerd wordt op het energienet. Als deze infrastructuur en de niet-dringende energie-intensieve bedrijfsprocessen actief zijn, valt op dat dan wel energie aangekocht moet worden, dit zorgt er dan weer voor dat de maandelijkse energiefactuur te duur wordt.\\
+De zonnepanelen van carwash Clean Car zijn geplaatst om de maandelijkse energiefactuur te verlagen. Sinds begin 2022 merkt het bedrijf op dat op momenten dat de infrastructuur van de carwash niet actief is, er veel energie geïnjecteerd wordt op het energienet. Als de zonneproductie beperkt is en de infrastructuur van de carwash plus de niet-dringende energie-intensieve bedrijfsprocessen actief zijn, valt op dat dan wel energie aangekocht moet worden, dit zorgt er dan weer voor dat de maandelijkse energiefactuur te duur wordt.\\
 
 Het bedrijf heeft in totaal 432 ET-Solar zonnepanelen op hun domein. Het piekvermogen van 1 paneel bedraagt 235 wattpiek, dus als alle panelen samen hun volledige capaciteit benutten, bedraagt het piekvermogen 101 520 wattpiek. Om de opgewekte zonne-energie om te zetten naar elektriciteit zijn er omvormers nodig, hiervoor maakt de carwash gebruik van deze omvormers:
 
