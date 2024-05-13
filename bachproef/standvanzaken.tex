@@ -58,10 +58,31 @@ Het verschil tussen een laadpaal die de functie van bidirectioneel laden niet he
 
 Het interessantste voor het bedrijf is de vehicle-to-home oplossing, omdat als de elektriciteit wegvalt, er kan overgeschakeld worden op de batterij van de ID. buzz of reserve batterijen. Het voordeel hiervan is dat de elektriciteit niet moet wegvallen om de batterij van de ID. buzz te gebruiken, waardoor als er enkel energie aangekocht wordt er andere niet-dringende bedrijfsprocessen hiermee verder kunnen worden aangestuurd. De reden dat er niet voor de vehicle-to-grid oplossing gekozen wordt is omdat het bedrijf minder elektriciteit wil injecteren op het energienet, aangezien hier bijna niets aan verdiend wordt. Het is immers juist de bedoeling van vehicle-to-grid, om een batterij op te laden en dan te injecteren op het energienet. In dit specifieke geval wordt er evenwel ingezet op het optimaliseren van het eigen verbruik en het minimaliseren van de injectie.
 
-\subsection{Wat is de impact van bidirectioneel laden op batterijen uit elektrische voertuigen?}
-\label{sec:stand-van-zaken-bidirectioneel-laden-impact}
+\subsection{Batterijen uit elektrische voertuigen}
+\label{sec:stand-van-zaken-bidirectioneel-laden-batterijen}
 
-Deze tekst moet nog geschreven worden.
+Elk elektrisch voertuig heeft een batterij, deze batterij is nodig om te kunnen rijden. Zo zijn er verschillende batterijen beschikbaar waaruit de fabrikanten van de voertuigen kunnen kiezen, 4 van deze batterijen zijn:
+
+\begin{itemize}
+    \item Lithium-ion (Li-ion) batterij
+    \item Loodaccu
+    \item Nikkel-cadmium (NiCd) batterij
+    \item Nikkel-metaalhydride (NIMH) batterij
+\end{itemize}
+
+“De Lithium-ion batterij werd begin jaren 90 uitgevonden. Deze uitvinding was een doorbraak op het gebied van batterijen, aangezien deze batterij efficiënter te werk gaat dan alle andere batterijen. Dit type van batterij wordt in veel draagbare elektronische apparaten gebruikt zoals in mobiele telefoons, laptops, …\\
+
+Omdat de lithium-ion batterij een hoge energie-eenheid massa heeft, wordt deze batterij gekozen als batterij in de meeste elektrische voertuigen. Een paar eigenschappen van deze batterij zijn dat de batterij licht in gewicht is en een laag zelfontlading niveau heeft, wat betekent dat ze geen energie ontladen in rusttoestand. Een ander voordeel is dat de batterij met een minimum aan afval kan worden gerecycled.\\
+
+De loodaccu werd uitgevonden door de Fransman Gaston Planté in 1860. Deze batterij werd tot in de jaren 80 gebruikt bij elektrische voertuigen, maar deze technologie is verdwenen met de komst van de Lithium-ion batterij. Zo zijn de loodaccu’s zwaarder en hebben deze een lagere energiedichtheid tegenover de Lithium-ion batterijen. De loodaccu’s worden wel nog gebruikt voor toepassingen met een laag vermogen en voor noodstroomvoorziening.\\
+
+Hoewel de nikkel-cadmium batterij een exceptionele energiedichtheid en hoge efficiëntie had, hadden deze batterijen een lage levensduur. Deze batterij werd in 1899 uitgevonden en had marktdominantie tot het begin van de jaren 90. Ondanks deze dominantie wordt er geen voorkeur gegeven aan deze batterij voor het gebruik in moderne elektrische voertuigen. In de jaren 90 werden deze batterijen gebruikt in elektrische voertuigen, maar werden al snel verboden vanwege hun giftigheid.\\
+Een aangepaste versie van nikkel-cadmium batterijen zijn de nikkel-metaalhydride batterijen, deze batterijen werden in 1989 gepatenteerd. De batterijen worden gebruikt in mild hybride voertuigen dat geen externe bron nodig heeft om op te laden. Ze kunnen enkel opgeladen worden door het regeneratieve remmechanisme. Dit remmechanisme zet kinetische energie om in warmte tijdens het remmen, deze warmte wordt dan gebruikt om de batterij op te laden” \autocite{AnupKumarH2022}.
+
+\subsection{Oplossingen op de impact van bidirectioneel laden op batterijen uit elektrische voertuigen}
+\label{sec:stand-van-zaken-bidirectioneel-laden-oplossingen}
+
+"De impact van bidirectioneel laden op de batterijen van elektrische voertuigen is een belangrijk aandachtspunt bij de ontwikkeling van smart grid-technologieën" \autocite{Dubarry2017}. \textcite{Elvan2017} en \textcite{Monteiro2013} stellen beide oplossingen voor dit probleem voor, waarbij Elvan een modulaire enkelfasige bidirectionele EV-lader met optimalisatie van de stroomdeling voorstelt en Monteiro het ontwerp van een bidirectionele batterijlader voor EV's bespreekt. Deze oplossingen zijn bedoeld om de efficiëntie en integratie van EV-laders in het slimme elektriciteitsnet te verbeteren. \textcite{Anuja2024} draagt verder bij aan dit gebied door een bidirectionele lader voor EV-toepassingen voor te stellen, die een bidirectionele DC-DC-omvormer bevat voor stroomregeling en netstabiliteit.
 
 \section{Algoritmen}
 \label{sec:stand-van-zaken-algoritmen}
@@ -147,13 +168,14 @@ Aangezien er data verkregen moet worden, kunnen er 3 van deze protocollen niet g
 \section{Beluchtingssysteem van het water}
 \label{sec:stand-van-zaken-beluchtingssysteem}
 
-Het bedrijf Carwash Clean Car zuivert een deel van het water dat er gebruikt wordt in de carwash zelf, hierdoor is er ook een beluchtingssysteem geïnstalleerd. Dit beluchtingssysteem verbruikt niet zo veel elektriciteit en moet niet continu aan staan, daarmee kwam de vraag of deze ook smart aangestuurd kon worden aan de hand van een smart plug.\\
+Het bedrijf carwash Clean Car zuivert een deel van het water dat er gebruikt wordt in de carwash zelf, voor dit proces is er een beluchtingssysteem geïnstalleerd. Dit beluchtingssysteem verbruikt niet zo veel elektriciteit en moet niet continu actief zijn, hierdoor wordt dit proces momenteel enkel in de nacht uitgevoerd. Daarom kwam de vraag of deze beluchter ook smart aangestuurd kan worden aan de hand van een smart plug.\\
 
-Het beluchtingssysteem van het water verbruikt 3 kilowatt als deze aan het werken is. Dit is niet veel, maar het is niet dat dit fluctueert tussen 0 kilowatt en 3 kilowatt. Het verbruikt dus continu 3 kilowatt.\\
+De benodigdheden voor het automatisch aansturen van de smart plug is niet veel, namelijk een smart plug met internetverbinding en een applicatie voor het aansturen ervan is voldoende. Het aansturen zelf gebeurt aan de hand van een booleaanse waarde. Aan de hand van deze booleaanse waarde zal de backend het juiste signaal doorsturen naar de smart plug om deze in of uit te schakelen.\\
 
-Voor het beluchtingssysteem slim aan te sturen is er een smart plug voorzien, deze smart plug zal verbonden zijn met het internet om aangestuurd te kunnen worden. Via de webapplicatie zal er een booleaanse waarde doorgestuurd worden naar de backend. De backend zal dan op zijn beurt, aan de hand van de booleaanse waarde, een signaal doorsturen naar de smart plug om deze aan of af te zetten.\\
+\section{Industriële droogkast}
+\label{sec:stand-van-zaken-droogkast}
 
-Om het aansturen van het beluchtingssysteem gebruiksvriendelijk weer te geven, wordt aan de hand van een schakelaar in de applicatie weergegeven of de smart plug aan of uit staat. Zo kan de gebruiker zelf kiezen wanneer deze aan of uit moet staan.
+De industriële droogkast is een van de niet-dringende bedrijfsprocessen die nog niet geïntegreerd is in de proefopstelling. Dit bedrijfsproces wordt gebruikt om de werkkledij van de eigenaar en de microvezeldoeken die de eigenaar gebruikt voor dieptereinigingen. De reden hiervoor is dat het component dat nodig is om de droogkast slim aan te sturen nog besteld moet worden. 1 van de redenen dat de droogkast geïntegreerd moet worden in de proefopstelling is omdat deze droogkast verouderd en energie-intensief is. Het component dat nog nodig is om deze droogkast slim aan te sturen is een smart plug.
 
 \section{protocollen}
 \label{sec:stand-van-zaken-protocollen}
@@ -176,7 +198,7 @@ Voor de laadpaal wordt het Modbus TCP/IP Slave protocol toegepast, wat wil zegge
     \label{fig:modbus-data-pakket}
 \end{figure}
 
-\section{dataregisters}
+\section{Data registers}
 \label{sec:stand-van-zaken-dataregisters}
 
 Aangezien het Modbus protocol gebruikt wordt om een verbinding te kunnen maken met de nodige apparatuur, moet ook bekend zijn welke data registers gebruikt moeten worden.\\
@@ -193,12 +215,12 @@ Voor de laadpaal aan te sturen zijn er meerdere registers die gebruikt kunnen wo
     \item Charge using 1 or 3 phases (1215) - Met dit register kan bepaald worden of de laadpaal in single- of 3-phase moet laden.
 \end{itemize}
 
-Bij deze registers, hebben registers 1210 en 1215 read/write privileges en registers 390, 1201 en 1102 read privileges, dit betekent dat registers 1210 en 1215 ook gebruikt kunnen worden om de laadpaal aan te sturen. Registers 390, 1201 en 1102 daar in tegen kunnen enkel aangesproken worden om waarden uit te lezen.
+Bij deze registers, hebben registers 1210 en 1215 read/write privileges en registers 390, 1201 en 1102 read privileges, dit betekent dat registers 1210 en 1215 ook gebruikt kunnen worden om de laadpaal aan te sturen. Registers 390, 1201 en 1102 daarentegen kunnen enkel aangesproken worden om waarden uit te lezen.
 
 \section{Authenticatie}
 \label{sec:stand-van-zaken-authenticatie}
 
-Er zijn verschillende manieren om een gebruiker te authenticeren in een applicatie. Zo zijn ook verschillende authenticatie providers die gebruikt kunnen worden, maar aangezien de applicatie die gebouwd wordt voor Carwash Clean Car een interne applicatie is, wordt er gebruikgemaakt van een zelf geschreven authenticatie service. Deze service zal een e-mailadres en wachtwoord verwachten van de gebruiker. Als deze correct zijn, zal de service een token terugsturen naar de applicatie. Dit token wordt dan gebruikt om de gebruiker te authenticeren in de applicatie.
+Er zijn verschillende manieren om een gebruiker te authenticeren in een applicatie. Zo zijn er ook verschillende authenticatie providers die gebruikt kunnen worden, maar aangezien de applicatie die gebouwd wordt voor Carwash Clean Car een interne applicatie is, wordt er gebruikgemaakt van een zelf geschreven authenticatie service. Deze service zal een e-mailadres en wachtwoord verwachten van de gebruiker. Als deze correct zijn, zal de service een token terugsturen naar de applicatie. Dit token wordt dan gebruikt om de gebruiker te authenticeren in de applicatie.
 
 \section{Backend}
 \label{sec:stand-van-zaken-backend}
@@ -207,10 +229,10 @@ Omdat er verschillende apparaten moeten aangestuurd worden, kan de vraag gesteld
 
 De propere oplossing is dat er een backend met verschillende endpoints wordt opgesteld, zodat alle connecties met de apparaten makkelijk te testen vallen. De bedoeling is dan dat de applicatie de juiste waarden naar de juiste endpoints stuurt, zodat de apparaten niet rechtstreeks in contact met de applicatie komen te staan.\\
 
-De endpoints van de backend zijn opgedeeld per apparaat. Dit wil zeggen dat alle requests voor het apparaat in kwestie naar de endpoint van het apparaat in kwestie worden doorgestuurd. In lijst \ref{list:api-endpoints} vindt u de endpoints van de api terug.
+De endpoints van de backend zijn opgedeeld per apparaat. Dit wil zeggen dat alle requests voor het apparaat in kwestie naar de endpoint van het apparaat in kwestie worden doorgestuurd. In onderstaande lijst vindt u de endpoints van de api terug.
 
 \begin{itemize}
-    \item \textbf{Authenticatie:} \label{list:api-endpoints}
+    \item \textbf{Authenticatie:}
           \begin{itemize}
               \item GET-request
                     \begin{itemize}
@@ -263,20 +285,4 @@ Uiteindelijk maakt het niet echt uit welk front end framework er gebruikt wordt,
 \section{Samenvatting}
 \label{sec:stand-van-zaken-samenvatting}
 
-In de literatuurstudie zijn de belangrijkste spelers aan bod gekomen en is onderzocht geweest wat er nodig is om de applicatie voor carwash clean car te bouwen. Zo is er ook een diepere kennis opgedaan over de belangrijkste spelers, om het project met succes af te kunnen ronden. \\
-
-Er is besproken hoe er aan de data van de zonnepanelen geraakt kon worden en hoe deze data gebruikt kan worden om bepaalde bedrijfsprocessen aan te sturen wanneer er genoeg elektriciteit opgewekt wordt met de zonnepanelen.\\
-
-Het volgende deel van deze literatuurstudie had te maken met de laadpaal die geïnstalleerd staat aan het bedrijf. Zo is er onderzocht geweest hoe deze aangesproken kon worden.\\
-
-Na de eerste 2 hoofdstukken is er besproken hoe het beluchtingssysteem slim bestuurd kan worden. Zo werd door het bedrijf gecommuniceerd dat deze is aangesloten op een smart plug, die verbonden is met het internet. Hierdoor kan deze ook makkelijk van op afstand aan en af gezet worden.\\
-
-Nadien werden de gebruikte protocollen uitgebreid besproken. In dit hoofdstuk werd er eerst een kleine geschiedenis van het Modbus protocol verwoordt en werd uitgelegd hoe het Modbus TCP/IP en Modbus TCP/IP Slave protocol werkt.\\
-
-Na dit hoofdstuk werden de data registers die nodig zijn om te weten of er elektriciteit aangekocht of opgewekt wordt besproken. Zo werden ook de registers in verband met de laadpaal die belangrijk zijn voor carwash clean car opgesomd, hier werd per register ook een klein woordje uitleg bij gegeven om te weten wat welk register juist doet.\\
-
-Tussen het hoofdstuk van de data registers en de backend kawm het hoofdstuk over authenticatie aan bod. Hier werd besproken hoe de gebruiker geauthenticeerd wordt in de applicatie.\\
-
-In het voorlaatste deel van de literatuurstudie werd de backend besproken. Hier werd aangetoond dat deze nodig is om de applicatie makkelijker te beheren. Er werd ook een oplijsting gemaakt van alle endpoints.\\
-
-Als laatste werd de front end besproken, hier werd aangehaald welke front end framework gebruikt wordt in de proefopstelling.
+In de literatuurstudie kwamen de belangrijkste spelers en methoden voor het besparen van energie aan bod. Zo is er een diepere kennis opgedaan over de spelers en methoden, met deze kennis kan er aan de proefopstelling gestart worden, om zo het project met succes af te kunnen ronden.
