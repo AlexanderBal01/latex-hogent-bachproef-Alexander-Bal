@@ -1,2 +1,42 @@
 \chapter{\IfLanguageName{dutch}{Analyse van de vereisten}{Requirements analysis}}%
 \label{ch:analyse-van-de-vereisten}
+
+In dit hoofdstuk is het de bedoeling om de vereisten voor de applicatie te bespreken, dit gebeurt door eerst een lijst van de vereisten op te stellen, om nadien elke vereiste apart uit te leggen waarom deze nodig is. Na het bespreken van deze vereisten wordt gekeken welke methoden en componenten er gebruikt kunnen worden in de applicatie. Het bepalen van de methoden en componenten die zeker in de applicatie moeten verwerkt zijn gebeurt aan de hand van de vereisten.
+
+\section{Inloggen en uitloggen van een gebruiker}
+\label{sec:inloggen-en-uitloggen-van-een-gebruiker}
+
+Aangezien de webapplicatie gevoelige informatie van het bedrijf weergeeft, moet deze informatie afgeschermd worden. Hiervoor zal er een mailadres en wachtwoord worden gevraagd. Als de combinatie van het mailadres en wachtwoord kloppen zal deze gebruiker ingelogd worden. Als de gebruiker wilt uitloggen, zal deze op de knop voor het uitloggen moeten drukken.
+
+\section{Aanmaken van nieuwe gebruikers}
+\label{sec:aanmaken-van-nieuwe-gebruikers}
+
+Omdat de webapplicatie privaat is mogen enkel ingelogde gebruikers nieuwe gebruikers aanmaken. Dit is een extra vorm van beveiliging, zodat niet iedereen een account kan aanmaken voor de webapplicatie. Het mailadres dat gelinkt is aan de gebruiker die ingelogd is, zal automatisch een mail verzenden naar het mailadres van de nieuwe gebruiker met een login en een tijdelijk wachtwoord. Het tijdelijk wachtwoord kan nadien nog veranderd worden in de gebruikersinstellingen.
+
+\section{Weergave van het huidige energieverbruik, de huidige opgewekte energie en de huidige aangekochte energie}
+\label{sec:weergave-van-het-energieverbruik}
+
+Het bedrijf wil graag weten wat het huidige energieverbruik is van alle bedrijfsprocessen die op dat moment aan staan. Dit wordt weergegeven aan de hand van een grafiek, aan de hand van deze grafiek kan het bedrijf ook de huidige opgewekte energie en de huidige aankoop van energie raadplegen. Deze grafiek wordt live geüpdatet, zodat deze altijd de laatste data bevat.
+
+\section{Manuele overschrijving van een bedrijfsproces}
+\label{sec:manuele-overschrijving-van-een-bedrijfsproces}
+
+Elk bedrijfsproces moet een optie hebben om deze manueel aan te sturen. Als een bedrijfsproces manueel aangestuurd wordt, mogen de algoritmes deze niet uitschakelen of aansturen. Dit is nodig indien het bedrijf een bedrijfsproces dringend nodig heeft, maar er niet genoeg energie is om dit bedrijfsproces aan te sturen.
+
+\section{Weergave van de status, modus, temperatuur, huidige laadvermogen en het huidige energieverbruik van de laadpaal}
+\label{sec:weergave-van-de-status-van-de-laadpaal}
+
+Voor al deze informatie weer te geven wordt de data in tekstvelden gestoken die automatisch veranderen wanneer de data wijzigt. De tekstvelden zullen dus altijd de laatste informatie bevatten van de laadpaal.
+
+\section{Aansturen van de laadpaal}
+\label{sec:aansturen-van-de-laadpaal}
+
+Het aansturen van de laadpaal bevat het instellen van het maximumvermogen de laadpaal mag verbruiken en of de laadpaal enkel- of driefasig moet laden. Het maximum vermogen zal aangestuurd kunnen worden aan de hand van vooraf bepaalde vermogens en een invoerveld om het vermogen zelf te bepalen. Aangezien er maar 2 opties zijn voor in hoeveel fasen de laadpaal moet laden, zal dit bepaald worden aan de hand van een knop.
+
+\section{Weergeven van de huidige status van het beluchtingssysteem}
+\label{sec:weergeven-van-de-huidige-status-van-het-beluchtingssysteem}
+
+Het beluchtingssysteem moet ook een status hebben die weergegeven wordt in de webapplicatie. Deze status zal weergegeven worden aan de hand van een tekstveld dat automatisch verandert wanneer de status wijzigt
+
+\section{Lijst met te gebruiken methoden en componenten}
+\label{sec:lijst-met-te-gebruiken-methoden-en-componenten}
