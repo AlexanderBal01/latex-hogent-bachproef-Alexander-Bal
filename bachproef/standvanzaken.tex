@@ -9,30 +9,38 @@
 
 Zoals in hoofdstuk \ref{ch:inleiding} werd vermeld, wordt er een oplossing gezocht voor het slim aansturen van bepaalde bedrijfsprocessen van het bedrijf Carwash Clean Car. Voordat er oplossingen kunnen worden besproken, is het belangrijk dat er een grondige voorkennis wordt opgedaan over het onderwerp. Deze literatuurstudie zal daarbij helpen. Om tot een geschikte oplossing te komen, is de literatuurstudie opgedeeld in 3 delen. In afbeelding \ref{fig:voorlopige-proefopstelling} wordt de voorlopige versie van de proefopstelling weergegeven, zodat een idee kan gevormd worden over hoe alles zal samenwerken.
 
-\begin{figure}[htbp]
+\begin{figure}[h!]
     \centering
-    \includegraphics[width=20em]{./graphics/voorlopige-proefopstelling.png}
+    \includegraphics[width=0.6\textwidth]{./graphics/voorlopige-proefopstelling.png}
     \caption{Voorlopige ilustratie van de proefopstelling}
-     \label{fig:voorlopige-proefopstelling}
+    \label{fig:voorlopige-proefopstelling}
 \end{figure}
 
-\pagebreak
+Er zijn verschillende componenten aanwezig in afbeelding \ref{fig:voorlopige-proefopstelling}, deze componenten kunnen later nog wijzigen of er kunnen nog componenten bij komen, waardoor dit diagram niet meer klopt. De huidige componenten in het schema van afbeelding \ref{fig:voorlopige-proefopstelling} zijn:
 
-\section{Hoe kwam carwash Clean Car op dit idee?}
-\label{sec:stand-van-zaken-idee}
-
-Carwash Clean Car heeft in 2013 zonnepanelen geplaatst, omdat de eigenaar toen al merkte dat als alle apparatuur van de carwash samen moest aanstaan, deze de energiefactuur te duur maakte. Hierbij werd ook rekening gehouden met de plannen om een extra self carwash met 5 wasboxen te plaatsen op het domein. Toen deze self carwash geplaatst was in 2015, merkte de eigenaar toch op dat er niet altijd genoeg zonne-energie werd geproduceerd door de zonnepanelen, om de elektriciteit-intensieve bedrijfsprocessen aan te sturen. Er werd dus nog altijd veel energie aangekocht. Bovenop het tekort aan zonne-energie, werden de energieprijzen steeds maar duurder.\\
-
-Een paar jaar later besliste het bedrijf om hun bedrijfswagen op fossiele brandstof te vervangen door een elektrische wagen. Hierdoor werd er ook een laadpaal van Alfen geplaatst die slim aan te sturen is. Zo kwam carwash Clean Car op het idee om alle niet-dringende bedrijfsprocessen slim aan te sturen door middel van een custom webapplicatie en daarbij het laden van die wagen op een slimme manier te laten gebeuren.
+\begin{itemize}
+    \item De zonnepanelen
+    \item De Siemens PAC2200
+    \item De beluchter
+    \item De smarplug waar de beluchter op aangesloten is
+    \item De laadpaal
+    \item 2 Raspberry Pi’s
+    \begin{itemize}
+        \item 1 Raspberry Pi voor de backend
+        \item 1 Raspberry Pi voor de webapplicatie
+    \end{itemize}
+    \item De router
+    \item De eindgebruiker
+\end{itemize}
 
 \section{Energieverbruikers van carwash Clean Car}
 \label{sec:stand-van-zaken-energieverbruikers}
 
-Aangezien deze casus zich richt op een carwash, is 1 van de belangrijkste energieverbruikers de machines en infrastructuur die gebruikt wordt om de tunnel van de carwash aan te sturen. De tunnel kan opgedeeld worden in 2 delen, het eerste deel dient voor het wassen van de auto’s, wat gemiddeld 5 kilowatt verbruikt per auto. Het tweede deel van de tunnel zorgt voor het drogen van de auto’s, dit verbruikt gemiddeld 50 kilowatt.\\
+Aangezien deze casus zich richt op een carwash, is 1 van de belangrijkste energieverbruikers de machines en infrastructuur die gebruikt wordt om de tunnel van de carwash aan te sturen. De tunnel kan opgedeeld worden in 2 delen, het eerste deel dient voor het wassen van de auto’s, wat gemiddeld 5 kilowatt verbruikt per auto. Het tweede deel van de tunnel zorgt voor het drogen van de auto’s, dit verbruikt gemiddeld 50 kilowatt per auto.\\
 
 Naast deze tunnel is er ook nog de self carwash, die op het domein gevestigd is. De infrastructuur van deze self carwash hoort dan ook bij de belangrijkste energieverbruikers van het bedrijf. De selfcarwash bestaat uit 5 wasboxen. Als 1 box in gebruik is, wordt 1 pomp geactiveerd en wordt er 2 kilowatt verbruikt. Voor de 5 wasboxen tegelijk, wordt het verbruik dus 10 kilowatt.\\
 
-Na de 2 belangrijkste energieverbruikers zijn er ook verschillende niet-dringende energieverbruikers die toch wel belangrijk zijn voor de eigenaars, zo staat er een laadpaal geïnstalleerd, deze laadpaal wordt gebruikt voor het opladen van elektrische voertuigen, zodat deze kunnen gebruikt worden wanneer het nodig is. Het laadvermogen van de laadpaal kan zelf ingesteld worden tot en met 11 kilowatt.\\
+Na de 2 belangrijkste energieverbruikers zijn er ook verschillende niet-dringende energieverbruikers, zo staat er een laadpaal geïnstalleerd, deze laadpaal wordt gebruikt voor het opladen van elektrische voertuigen Het laadvermogen van de laadpaal kan zelf ingesteld worden tot een maximum vermogen van 11 kilowatt.\\
 
 De tweede niet-dringende energieverbruiker is het beluchtingssysteem van het water, dit systeem is nodig om te voorkomen dat er algen ontstaan in het zelf gerecycleerde water in de waterputten. Het beluchtingssysteem heeft een vermogen van 3 kilowatt. Deze 3 kilowatt fluctueert niet, wat betekent dat het beluchtingssysteem continu 3 kilowatt verbruikt wanneer deze ingeschakeld wordt. Het systeem is niet continu ingeschakeld om schuimvorming te voorkomen.\\
 
@@ -45,18 +53,20 @@ De tunnel en self carwash worden in de proefopstelling niet aangesproken, omdat 
 
 Het eerste concept dat besproken wordt is peak shaving. De bedoeling van dit concept is om pieken in de aankoop van energie af te vlakken, dit kan gebeuren door bepaalde bedrijfsprocessen te verplaatsen naar momenten waar er minder energie verbruikt wordt of er te veel energie geïnjecteerd wordt op het energienet. Deze methode zorgt voor een meer gelijkvormige verdeling van het energieverbruik.\\
 
-Er zijn verschillende methoden om peak shaving te bereiken, “1 methode van peak shaving is het gebruik van een energieopslagsysteem" \autocite{UDDIN2018}. Om deze methode te gebruiken zijn er batterijen nodig die energie kunnen opslaan, deze batterijen stellen het energieopslagsysteem voor. “Bij deze methode wordt peak shaving bereikt door de batterijen op te laden wanneer de vraag naar elektriciteit laag is, ook wel een dalperiode genoemd. Deze batterijen kunnen dan ontladen worden als de vraag naar elektriciteit hoog is. Deze methode kan economische voordelen opleveren voor het bedrijf, omdat tijdens de hoge vraag naar elektriciteit de batterijen gebruikt kunnen worden" \autocite{UDDIN2018}.
+Er zijn verschillende methoden om peak shaving te bereiken, 1 mogelijke techniek die bij peak shaving gebruikt wordt volgens \textcite{UDDIN2018} is het gebruik van een energieopslagsysteem. Om deze methode te gebruiken zijn er batterijen nodig die energie kunnen opslaan, deze batterijen stellen het energieopslagsysteem voor. Volgens \textcite{UDDIN2018} kan deze methode peak shaving bereiken door batterijen op te laden wanneer de vraag naar elektriciteit laag is, ook wel een dalperiode genoemd. Deze methode kan economische voordelen opleveren voor het bedrijf, omdat tijdens de hoge vraag naar elektriciteit de batterijen gebruikt kunnen worden.
 
 \section{Bidirectioneel laden van batterijen}
 \label{sec:stand-van-zaken-bidirectioneel-laden}
 
 1 van de concepten die aan het opkomen is bij laadpalen is bidirectioneel laden. Dit betekent dat, als een auto opgeladen wordt, deze auto batterij gebruikt kan worden om energie op te slaan voor later gebruik. Wat betekent dat de wagen ook energie kan teruggeven via de laadpaal. Dit zou handig zijn om niet-dringende bedrijfsprocessen aan te sturen als er energie aangekocht wordt. Dit concept kan ook toegepast worden op reserve batterijen die geïnstalleerd worden voor als de elektriciteit wegvalt.\\
 
-Voor het gebruik van bidirectioneel laden van een auto is er een elektrische auto en een laadpaal nodig die dit ondersteunt. Er zijn al verschillende bedrijven die dit concept toepassen op hun wagens. Gelukkig heeft de eigenaar van het bedrijf hier rekening mee gehouden bij de aankoop van de ID. Buzz van Volkswagen. De huidige laadpaal daarentegen heeft deze functionaliteit nog niet, waardoor deze nog niet benut kan worden.\\
+Voor het gebruik van bidirectioneel laden van een auto is er een elektrische auto en een laadpaal nodig die dit ondersteunt. Er zijn al verschillende bedrijven die dit concept toepassen op hun wagens. Hoewel de wagen in de opstelling, een ID.Buzz van Volkswagen, bidirectioneel laden ondersteunt, kan dit nog niet in de proefopstelling benut worden omdat de laadpaal niet over deze functionaliteit beschikt.\\
 
-Het verschil tussen een laadpaal die de functie van bidirectioneel laden niet heeft en een laadpaal die de functie wel heeft, heeft te maken met het type van elektrische stroom, zo bestaan er twee types van elektrische stroom namelijk wisselstroom (AC) en gelijkstroom (DC). Zo kan bidirectioneel laden voor 2 toepassingen worden gebruikt, namelijk Vehicle-to-Grid (V2G) en Vehicle-to-Home (V2H), “vehicle-to-grid is bedoeld voor het verkopen van opgeslagen energie aan het energienet. Terwijl vehicle-to-home daarentegen bedoeld is om de opgeslagen energie later zelf thuis te gebruiken” \autocite{LAZZERONI2019}.\\
+Het verschil tussen een laadpaal die de functie van bidirectioneel laden niet heeft en een laadpaal die de functie wel heeft is het type van elektrische stroom dat de laadpaal gebruikt, zo bestaan er twee types van elektrische stroom namelijk wisselstroom (AC) en gelijkstroom (DC) \footnote{Deze informatie is op 6 mei 2024 teruggevonden op deze website: \url{https://www.vlaanderen.be/een-elektrische-wagen-laden/uw-elektrische-wagen-als-thuisbatterij}}.\\
 
-Het interessantste voor het bedrijf is de vehicle-to-home oplossing, omdat als de elektriciteit wegvalt, er kan overgeschakeld worden op de batterij van de ID. buzz of reserve batterijen. Het voordeel hiervan is dat de elektriciteit niet moet wegvallen om de batterij van de ID. buzz te gebruiken, waardoor als er enkel energie aangekocht wordt er andere niet-dringende bedrijfsprocessen hiermee verder kunnen worden aangestuurd. De reden dat er niet voor de vehicle-to-grid oplossing gekozen wordt is omdat het bedrijf minder elektriciteit wil injecteren op het energienet, aangezien hier bijna niets aan verdiend wordt. Het is immers juist de bedoeling van vehicle-to-grid, om een batterij op te laden en dan te injecteren op het energienet. In dit specifieke geval wordt er evenwel ingezet op het optimaliseren van het eigen verbruik en het minimaliseren van de injectie.
+Bidirectioneel laden kan voor 2 toepassingen worden gebruikt, namelijk Vehicle-to-Grid (V2G) en Vehicle-to-Home (V2H), volgens \textcite{LAZZERONI2019} is vehicle-to-grid bedoeld voor het verkopen van opgeslagen energie aan het energienet. Terwijl vehicle-to-home daarentegen bedoeld is om de opgeslagen energie later zelf thuis te gebruiken.\\
+
+Het interessantste voor het bedrijf is de vehicle-to-home oplossing, omdat als de elektriciteit wegvalt, er kan overgeschakeld worden op de batterij van de ID. buzz of reserve batterijen. Het voordeel hiervan is dat de elektriciteit niet moet wegvallen om de batterij van de ID. buzz te gebruiken, waardoor als er enkel energie aangekocht wordt er andere niet-dringende bedrijfsprocessen hiermee verder kunnen worden aangestuurd. De reden dat er niet voor de vehicle-to-grid oplossing gekozen wordt is omdat het bedrijf minder elektriciteit wil injecteren op het energienet, aangezien hier bijna niets aan verdiend wordt. In dit specifieke geval wordt er ingezet op het optimaliseren van het eigen verbruik en het minimaliseren van de injectie.
 
 \subsection{Batterijen uit elektrische voertuigen}
 \label{sec:stand-van-zaken-bidirectioneel-laden-batterijen}
@@ -70,38 +80,44 @@ Elk elektrisch voertuig heeft een batterij, deze batterij is nodig om te kunnen 
     \item Nikkel-metaalhydride (NIMH) batterij
 \end{itemize}
 
-“De Lithium-ion batterij werd begin jaren 90 uitgevonden. Deze uitvinding was een doorbraak op het gebied van batterijen, aangezien deze batterij efficiënter te werk gaat dan alle andere batterijen. Dit type van batterij wordt in veel draagbare elektronische apparaten gebruikt zoals in mobiele telefoons, laptops, …\\
+In de volgende 5 paragrafen worden de bovenstaande batterijen besproken, de informatie in deze paragrafen komt van \textcite{AnupKumarH2022}, de Lithium-ion batterij werd begin jaren 90 uitgevonden. Deze uitvinding was een doorbraak op het gebied van batterijen, aangezien deze batterij efficiënter te werk gaat dan alle andere batterijen. Dit type van batterij wordt in veel draagbare elektronische apparaten gebruikt zoals in mobiele telefoons, laptops, …\\
 
 Omdat de lithium-ion batterij een hoge energie-eenheid massa heeft, wordt deze batterij gekozen als batterij in de meeste elektrische voertuigen. Een paar eigenschappen van deze batterij zijn dat de batterij licht in gewicht is en een laag zelfontlading niveau heeft, wat betekent dat ze geen energie ontladen in rusttoestand. Een ander voordeel is dat de batterij met een minimum aan afval kan worden gerecycled.\\
 
 De loodaccu werd uitgevonden door de Fransman Gaston Planté in 1860. Deze batterij werd tot in de jaren 80 gebruikt bij elektrische voertuigen, maar deze technologie is verdwenen met de komst van de Lithium-ion batterij. Zo zijn de loodaccu’s zwaarder en hebben deze een lagere energiedichtheid tegenover de Lithium-ion batterijen. De loodaccu’s worden wel nog gebruikt voor toepassingen met een laag vermogen en voor noodstroomvoorziening.\\
 
 Hoewel de nikkel-cadmium batterij een exceptionele energiedichtheid en hoge efficiëntie had, hadden deze batterijen een lage levensduur. Deze batterij werd in 1899 uitgevonden en had marktdominantie tot het begin van de jaren 90. Ondanks deze dominantie wordt er geen voorkeur gegeven aan deze batterij voor het gebruik in moderne elektrische voertuigen. In de jaren 90 werden deze batterijen gebruikt in elektrische voertuigen, maar werden al snel verboden vanwege hun giftigheid.\\
-Een aangepaste versie van nikkel-cadmium batterijen zijn de nikkel-metaalhydride batterijen, deze batterijen werden in 1989 gepatenteerd. De batterijen worden gebruikt in mild hybride voertuigen dat geen externe bron nodig heeft om op te laden. Ze kunnen enkel opgeladen worden door het regeneratieve remmechanisme. Dit remmechanisme zet kinetische energie om in warmte tijdens het remmen, deze warmte wordt dan gebruikt om de batterij op te laden” \autocite{AnupKumarH2022}.
+Een aangepaste versie van nikkel-cadmium batterijen zijn de nikkel-metaalhydride batterijen, deze batterijen werden in 1989 gepatenteerd. De batterijen worden gebruikt in mild hybride voertuigen dat geen externe bron nodig heeft om op te laden. Ze kunnen enkel opgeladen worden door het regeneratieve remmechanisme. Dit remmechanisme zet kinetische energie om in warmte tijdens het remmen, deze warmte wordt dan gebruikt om de batterij op te laden.
 
-\subsection{Oplossingen op de impact van bidirectioneel laden op batterijen uit elektrische voertuigen}
-\label{sec:stand-van-zaken-bidirectioneel-laden-oplossingen}
+\subsection{Wat is de impact van bidirectioneel?}
+\label{sec:stand-van-zaken-bidirectioneel-laden-impact}
 
 "De impact van bidirectioneel laden op de batterijen van elektrische voertuigen is een belangrijk aandachtspunt bij de ontwikkeling van smart grid-technologieën" \autocite{Dubarry2017}. \textcite{Elvan2017} en \textcite{Monteiro2013} stellen beide oplossingen voor dit probleem voor, waarbij Elvan een modulaire enkelfasige bidirectionele EV-lader met optimalisatie van de stroomdeling voorstelt en Monteiro het ontwerp van een bidirectionele batterijlader voor EV's bespreekt. Deze oplossingen zijn bedoeld om de efficiëntie en integratie van EV-laders in het slimme elektriciteitsnet te verbeteren. \textcite{Anuja2024} draagt verder bij aan dit gebied door een bidirectionele lader voor EV-toepassingen voor te stellen, die een bidirectionele DC-DC-omvormer bevat voor stroomregeling en netstabiliteit.
 
 \section{Algoritmen}
 \label{sec:stand-van-zaken-algoritmen}
 
-Om de niet-dringende bedrijfsprocessen slim aan te sturen, kunnen er verschillende algoritmen gebruikt worden. Deze algoritmen worden bepaald aan de hand van de voorwaarden die opgelegd zijn door de eigenaar van het bedrijf. De basisvoorwaarden die bij carwash Clean Car opgelegd zijn, zijn dat de niet-dringende bedrijfsprocessen enkel mogen aangestuurd worden als er meer energie opgewekt wordt dan dat er verbruikt wordt.\\
+Om de niet-dringende bedrijfsprocessen slim aan te sturen, kunnen er verschillende algoritmen gebruikt worden. Deze algoritmen worden bepaald aan de hand van de voorwaarden die opgelegd zijn door de eigenaar van het bedrijf. De basisvoorwaarden die bij carwash Clean Car opgelegd zijn, zijn dat de niet-dringende bedrijfsprocessen enkel mogen aangestuurd worden als er meer energie opgewekt wordt dan dat er verbruikt wordt. Als een bedrijfsproces overdag niet aangestuurd is geweest, wordt deze in de nacht uitgevoerd.\\
 
 Er zijn verschillende soorten algoritmen die aan de hand van de basisvoorwaarden gebruikt kunnen worden, zoals:
 
 \begin{itemize}
+    \item een algoritme voor het bepalen van de prioriteit van bedrijfsprocessen
     \item een algoritme voor het optimaal gebruik van bedrijfsprocessen
     \item een algoritme voor de inschakeling van bedrijfsprocessen
 \end{itemize}
 
-Deze 2 algoritmen zijn de algoritmen waarmee de proefopstelling van start gaat. Het kan zijn dat deze algoritmen nog geoptimaliseerd worden of er nog algoritmen bij komen doorheen de testfase van de proefopstelling.
+Deze 3 algoritmen zijn de algoritmen waarmee de proefopstelling van start gaat. Het kan zijn dat deze algoritmen nog geoptimaliseerd worden of er nog algoritmen bij komen doorheen de testfase van de proefopstelling.
+
+\subsection{Het algoritme voor het bepalen van de prioriteit van bedrijfsprocessen}
+\label{sec:stand-van-zaken-algoritme-prioriteit}
+
+Dit algoritme zal aan elk bedrijfsproces een prioriteit toekennen, deze prioriteit zal bepaald worden aan de hand van de laatste keer dat het bedrijfsproces aangestuurd is geweest en de energie die het bedrijfsproces verbruikt. Hoe langer het geleden is dat het bedrijfsproces aangestuurd is geweest, hoe hoger de prioriteit zal zijn. Als er meerdere bedrijfsprocessen zijn die even lang geleden aangestuurd zijn geweest, zal de prioriteit bepaald worden aan de hand van het energieverbruik van het bedrijfsproces.
 
 \subsection{Het algoritme voor het optimaal gebruik van bedrijfsprocessen}
 \label{sec:stand-van-zaken-algoritme-optimaal}
 
-Dit algoritme zal een lijst teruggeven met bedrijfsprocessen die aangestuurd kunnen worden bij het huidige overschot van energie. Deze lijst zal het meeste aantal energie van het huidige overschot van energie in gebruik nemen, zodat de energie zo min mogelijk verspilt wordt.
+Dit algoritme zal een lijst teruggeven met bedrijfsprocessen die aangestuurd kunnen worden bij het huidige overschot van energie. Deze lijst wordt bepaald aan de hand van de prioriteit van het bedrijfsproces en zal zo het meeste aantal energie van het huidige overschot van energie in gebruik nemen, zodat de energie zo min mogelijk verspilt wordt.
 
 \subsection{Het algoritme voor het aansturen van bedrijfsprocessen}
 \label{sec:stand-van-zaken-algoritme-aansturen}
@@ -113,14 +129,14 @@ Dit algoritme zal gebruikt worden voor het in en uitschakelen van bedrijfsproces
 
 Dit is een systeem voor het beheren en monitoren van de energie die verbruikt wordt binnen het bedrijf. Volgens \textcite{FALOPE2024} kunnen energiebeheersystemen opgedeeld worden in 2 groepen, namelijk voorspellende energiebeheersystemen en realtime energiebeheersystemen.\\
 
-“Een voorspellend energiebeheersysteem maakt gebruik van historische data om een belasting voorspelling, een energievoorziening voorspelling of een combinatie van beide te genereren. Deze voorspellingen zorgen ervoor dat het energieaanbod optimaal overeenstemt met de vraag naar energie. Omdat voorspellingen echter niet 100~\% wetenschappelijk ondersteund zijn, moet realtime planning van de energiebelasting geïntegreerd worden om voorspellingsfouten aan te passen. Een realtime energiebeheersysteem daarentegen, zal gebruikmaken van algoritmen om de regeling van de energiebelasting of energielevering aan te passen” \autocite{FALOPE2024}.\\
+In de volgende paragraaf wordt het verschil tussen de 2 groepen van energiebeheersystemen aangehaald aan de hand van de paper van \textcite{FALOPE2024} een voorspellend energiebeheersysteem maakt gebruik van historische data om een belasting voorspelling, een energievoorziening voorspelling of een combinatie van beide te genereren. Deze voorspellingen zorgen ervoor dat het energieaanbod optimaal overeenstemt met de vraag naar energie. Omdat voorspellingen echter niet 100~\% wetenschappelijk ondersteund zijn, moet er als een reserve methode de realtime planning van de energiebelasting geïntegreerd worden in een voorspellend energiebeheersysteem om voorspellingsfouten aan te passen. Een realtime energiebeheersysteem daarentegen, zal gebruikmaken van algoritmen om de regeling van de energiebelasting of energielevering aan te passen.\\
 
-Het verschil tussen de twee groepen is de aanpak voor het weergeven van de energiebelasting en energielevering. Aangezien er niet genoeg data beschikbaar is om een voorspellend energiebeheersysteem te creëren, zal er een realtime energiebeheersysteem gebruikt worden.
+Het verschil tussen de twee groepen is de aanpak voor het weergeven van de energiebelasting en energielevering om zo de bedrijfsprocessen aan te sturen. Aangezien er niet genoeg data beschikbaar is om een voorspellend energiebeheersysteem te creëren, zal er een realtime energiebeheersysteem gebruikt worden.
 
 \section{Laadpaal voor de elektrische voertuigen}
 \label{sec:stand-van-zaken-laadpaal}
 
-Het laden van de bedrijfswagens is 1 van de niet-dringende bedrijfsprocessen van Carwash Clean Car. Voor dit bedrijfsproces uit te voeren, heeft het bedrijf 1 laadpaal staan om de 2 bedrijfswagens op te laden. De 2 wagens in kwestie zijn een Volkswagen ID. Buzz en een Volvo XC90 T8. De Volkswagen ID. Buzz is een volledig elektrische wagen, de XC90 daarentegen, is een plug-in hybride wagen. De laadpaal die gebruikt wordt bij het bedrijf is de Eve Single S-line van het merk Alfen. Deze laadpaal is gekozen omdat deze slim aangestuurd kon worden, dat de laadpaal aangesloten kon worden op drijfkracht. De prijs speelde ook een belangrijke rol in de aankoop van de laadpaal omdat deze later vervangen zou worden of er een laadpaal bij zou komen die bidirectioneel kan laden.
+Het laden van de bedrijfswagens is 1 van de niet-dringende bedrijfsprocessen van Carwash Clean Car. Voor dit bedrijfsproces uit te voeren, heeft het bedrijf 1 laadpaal staan om de 2 bedrijfswagens op te laden. De 2 wagens in kwestie zijn een Volkswagen ID. Buzz en een Volvo XC90 T8. De Volkswagen ID. Buzz is een volledig elektrische wagen, de XC90 daarentegen, is een plug-in hybride wagen. De laadpaal die gebruikt wordt bij het bedrijf is de Eve Single S-line van het merk Alfen. Deze laadpaal is gekozen omdat deze slim aangestuurd kon worden en dat de laadpaal aangesloten kon worden op drijfkracht.\\
 
 "Er zijn 2 connector types bij laadpalen, namelijk AC connectoren en DC connectoren. Deze 2 types hebben zelf ook nog elk hun eigen onderverdeling. Zo bestaat er binnen de familie van AC connectoren de onderverdeling binnen type 1 en type 2. Het type 1 is de SAE J1772 standaard. Dit type is de standaard in Amerika en Azië en kan tot 7,4 kilowatt snel laden. Het andere type is de IEC 62196-2 standaard dat gebruikt wordt in Europa. Dit type kan tot 43 kilowatt snel laden. Er zijn 3 DC connectoren, namelijk de CHAdeMO, de CCS en de Tesla connectors. De CHAdeMO connector is uitgevonden door Japan en kan een laadsnelheid bereiken tot 100 kilowatt. Het CCS, kort voor Combined Charging System, is een combinatie van een type 2 AC connector en DC connector. De AC connector kan tot 43 kilowatt en de DC connector tot 100 kilowatt snel laden. De laatste connector is de Tesla connector, deze connector maakt gebruik van de 480 volt snellaad technologie. Die technologie zorgt ervoor dat een auto volledig opgeladen kan worden in 1 uur tijd" \autocite{HEMAVATHI2022}. \\
 
@@ -163,7 +179,7 @@ Voor het aanspreken van de Siemens PAC2200 zijn er verschillende protocollen bes
     \item DHCP
 \end{itemize}
 
-Aangezien er data verkregen moet worden, kunnen er 3 van deze protocollen niet gebruikt worden, namelijk de webserver, het SNTP protocol en het DHCP protocol. Hierdoor is er geen keuze mogelijk, aangezien er maar 4 protocollen zijn. Om de data te verkrijgen zal dus het Modbus TCP protocol gebruikt moeten worden. In sectie \ref{sec:stand-van-zaken-protocollen} wordt er dieper ingegaan op het Modbus protocol.
+Aangezien er data verkregen moet worden, kunnen er 3 van deze protocollen niet gebruikt worden, namelijk de webserver, het SNTP protocol en het DHCP protocol. Om de data te verkrijgen zal dus het Modbus TCP protocol gebruikt moeten worden. In sectie \ref{sec:stand-van-zaken-protocollen} wordt er dieper ingegaan op het Modbus protocol.
 
 \section{Beluchtingssysteem van het water}
 \label{sec:stand-van-zaken-beluchtingssysteem}
@@ -227,7 +243,7 @@ Er zijn verschillende manieren om een gebruiker te authenticeren in een applicat
 
 Omdat er verschillende apparaten moeten aangestuurd worden, kan de vraag gesteld worden of dat deze allemaal rechtstreeks via de applicatie worden aangestuurd of dat er tussen de applicatie en de apparatuur, nog een extra service uitgewerkt wordt dat deze dan aanstuurt.\\
 
-De propere oplossing is dat er een backend met verschillende endpoints wordt opgesteld, zodat alle connecties met de apparaten makkelijk te testen vallen. De bedoeling is dan dat de applicatie de juiste waarden naar de juiste endpoints stuurt, zodat de apparaten niet rechtstreeks in contact met de applicatie komen te staan.\\
+Een oplossing is dat er een backend met verschillende endpoints wordt opgesteld, zodat alle connecties met de apparaten makkelijk te testen vallen. De bedoeling is dan dat de applicatie de juiste waarden naar de juiste endpoints stuurt, zodat de apparaten niet rechtstreeks in contact met de applicatie komen te staan.\\
 
 De endpoints van de backend zijn opgedeeld per apparaat. Dit wil zeggen dat alle requests voor het apparaat in kwestie naar de endpoint van het apparaat in kwestie worden doorgestuurd. In onderstaande lijst vindt u de endpoints van de api terug.
 
