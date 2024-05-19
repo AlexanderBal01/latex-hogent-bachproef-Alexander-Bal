@@ -184,9 +184,7 @@ Aangezien er data verkregen moet worden, kunnen er 3 van deze protocollen niet g
 \section{Beluchtingssysteem van het water}
 \label{sec:stand-van-zaken-beluchtingssysteem}
 
-Het bedrijf carwash Clean Car zuivert een deel van het water dat er gebruikt wordt in de carwash zelf, voor dit proces is er een beluchtingssysteem geïnstalleerd. Dit beluchtingssysteem verbruikt niet zo veel elektriciteit en moet niet continu actief zijn, hierdoor wordt dit proces momenteel enkel in de nacht uitgevoerd. Daarom kwam de vraag of deze beluchter ook smart aangestuurd kan worden aan de hand van een smart plug.\\
-
-Het beluchtingssysteem van het water verbruikt 3 kilowatt als deze aan het werken is. Dit is niet veel, maar het is niet dat dit fluctueert tussen 0 kilowatt en 3 kilowatt.Het verbruikt dus continu 3 kilowatt.\
+Het bedrijf carwash Clean Car zuivert een deel van het water dat er gebruikt wordt in de carwash zelf, voor dit proces is er een beluchtingssysteem geïnstalleerd. Dit beluchtingssysteem verbruikt continu 3 kilowatt en moet niet de hele dag actief zijn, hierdoor wordt dit proces momenteel enkel in de nacht uitgevoerd. Dit bedrijfsproces moet minimaal 30 minuten per 24 uur aanstaan. Daarom kwam de vraag of deze beluchter ook smart aangestuurd kan worden aan de hand van een smart plug.\\
 
 Voor het beluchtingssysteem slim aan te sturen is er een smart plug voorzien, deze smart plug zal verbonden zijn met het internet om aangestuurd te kunnen worden. Via de webapplicatie zal er een booleaanse waarde doorgestuurd worden naar de backend. De backend zal dan op zijn beurt, aan de hand van de booleaanse waarde, een signaal doorsturen naar de smart plug om deze aan of af te zetten.\\
 
@@ -240,7 +238,7 @@ Bij deze registers, hebben registers 1210 en 1215 read/write privileges en regis
 \section{Authenticatie}
 \label{sec:stand-van-zaken-authenticatie}
 
-Er zijn verschillende manieren om een gebruiker te authenticeren in een applicatie. Zo zijn er ook verschillende authenticatie providers die gebruikt kunnen worden, maar aangezien de applicatie die gebouwd wordt voor Carwash Clean Car een interne applicatie is, wordt er gebruikgemaakt van een zelf geschreven authenticatie service. Deze service zal een e-mailadres en wachtwoord verwachten van de gebruiker. Als deze correct zijn, zal de service een token terugsturen naar de applicatie. Dit token wordt dan gebruikt om de gebruiker te authenticeren in de applicatie.
+Er zijn verschillende manieren om een gebruiker te authenticeren in een applicatie. Zo zijn er ook verschillende authenticatie providers die gebruikt kunnen worden, maar aangezien de applicatie die gebouwd wordt voor Carwash Clean Car een interne applicatie is, wordt er gebruikgemaakt van een zelf geschreven authenticatie service. Deze service zal een e-mailadres en wachtwoord verwachten van de gebruiker. De applicatie zal enkel aanspreekbaar zijn voor het netwerk van de carwash, maar ook via een VPN-connectie met het netwerk van de carwash door middel van het ip adres van de webserver in te geven in de webbrowser. Als deze correct zijn, zal de service een token terugsturen naar de applicatie. Dit token wordt dan gebruikt om de gebruiker te authenticeren in de applicatie.
 
 \section{Backend}
 \label{sec:stand-van-zaken-backend}
@@ -300,9 +298,17 @@ De endpoints van de backend zijn opgedeeld per apparaat. Dit wil zeggen dat alle
 
 De front end van de applicatie is een belangrijk deel van het volledige plaatje, omdat de eindgebruiker hier het meeste interactie mee heeft. Het framework dat gebruikt zal worden is React JS, omdat dit de voorkeur was van het bedrijf.\\
 
-Uiteindelijk maakt het niet echt uit welk front end framework er gebruikt wordt, elk framework heeft zo zijn eigen voor en nadelen.
+De reden dat dit de voorkeur is voor het bedrijf is omdat er veel documentatie en een actieve community over React JS beschikbaar is, dus als er een update nodig is aan het programma kan deze makkelijk door een derde partij doorgevoerd worden.
 
 \section{Samenvatting}
 \label{sec:stand-van-zaken-samenvatting}
 
-In de literatuurstudie kwamen de belangrijkste spelers en methoden voor het besparen van energie aan bod. Zo is er een diepere kennis opgedaan over de spelers en methoden, met deze kennis kan er aan de proefopstelling gestart worden, om zo het project met succes af te kunnen ronden.
+In de literatuurstudie kwamen de belangrijkste spelers en methoden voor het besparen van energie aan bod. Zo is er een diepere kennis opgedaan over de spelers en methoden, met deze kennis kan er aan de proefopstelling gestart worden, om zo het project met succes af te kunnen ronden.\\
+
+Zo is er te weten gekomen dat de 2 belangrijkste energieverbruikers de carwash en self-carwash zijn en dat de niet-dringende energieverbruikers bestaan uit de laadpaal, het beluchtingssysteem van het water en de industriële droogkast.\\
+
+Als alle energieverbruikers geweten zijn, werden er methoden gezocht om de energiefactuur te verlagen. De 4 onderzochte methoden zijn: peak shaving, bidirectioneel laden van batterijen, het gebruik van algoritmen om de bedrijfsprocessen automatisch aan te sturen en energiebeheersystemen. Uit de onderzochte methoden bleek dat het gebruik van bidirectioneel laden nog niet kan toegepast worden in de carwash, aangezien de juiste infrastructuur nog niet aanwezig is. Zo is er gekozen om de andere 3 methoden toe te passen binnen de applicatie.\\
+
+Na het bespreken van de methoden zijn de verschillende niet-dringende energieverbruikers en apparaten voor energieopbrengst besproken. In de hoofdstukken van de niet-dringende energieverbruikers is er dieper ingegaan op hoe deze apparatuur werkt en indien de apparatuur zelf niet slim aangestuurd kan worden, wat de benodigdheden zijn om dit wel te kunnen. Zo is er bij de laadpaal besloten dat de communicatie via het Modbus TCP/IP Slave protocol moet gebeuren. Bij de zonnepanelen werd de conclusie getrokken dat er 2 monitorsystemen in de carwash geïnstalleerd zijn, namelijk de Solarlog 1000 van Solarinventors en de Siemens PAC2200, maar dat de monitor van Siemens ook de aangekochte energie kan raadplegen en de monitor van Solarinventors deze fuinctionaliteit niet heeft. Voor het beluchtingssysteem van het water en de industriële droogkast aan te sturen zijn er smart plugs nodig. Aangezien er 1 smart plug aanwezig is in het bedrijf, dat geïnstalleerd staat bij het beluchtingssysteem, is besloten de industriële droogkast momenteel nog niet te integreren in de proefopstelling.\\
+
+Het laatste deel van de literatuurstudie bevat de gebruikte protocollen, data registers, authenticatie van de applicatie, de backend en de front end. In het deel van de protocollen werd waargenomen dat enkel verschillende variaties van het Modbus protocol nodig zijn in de proefopstelling. In het hoofdstuk van de data registers werden de door het bedrijf gekozen data registers besproken en aangehaald wat deze juist deden. De authenticatie is zelf geschreven, omdat het een applicatie is die enkel beschikbaar is via het netwerk van de carwash. De conclusie van de backend bevatte alle endpoints van de API, zodat de webapplicatie niet rechtstreeks met de apparaten moet communiceren. In het deel van de front end werd de keuze van het gebruikte framework verantwoord.
