@@ -17,3 +17,22 @@ De laatste stap van het installeren van alle nodige software was het aanmaken va
 
 \section{Ontwikkelen van de backend}
 \label{sec:proefopstelling-backend}
+
+De backend bestaat uit verschillende flows met elk hun eigen functionaliteit. Door het project op te delen in verschillende flows is het makkelijk te onderscheiden waar welke functionaliteit staat.
+
+\subsection{Flow 1: Authenticatie}
+\label{subsec:proefopstelling-authenticatie}
+
+De eerste flow wordt gebruikt voor het inloggen en aanmaken van een gebruiker. Het inloggen van een gebruiker gebeurt aan de hand van het ophalen van de gebruiker informatie uit de databank met het mailadres dat wordt doorgegeven. Als er een mailadres van een gebruiker overeenkomt met het doorgegeven mailadres, dan wordt de gebruikersinformatie teruggegeven. Zo kan de webapplicatie kijken of het gehashte wachtwoord overeenkomt met het opgegeven wachtwoord.
+
+\subsection{Flow 2: Electricity}
+\label{subsec:proefopstelling-electricity}
+
+Deze flow wordt gebruikt voor het ophalen van het huidige energieverbruik, de huidige energieopbrengst en de huidige aankoop van energie. Zo worden al deze waarden teruggegeven in een JSON object. In deze flow worden ook berekeningen uitgevoerd zodat de waarden in het juiste formaat worden weergegeven.
+
+\subsection{Flow 3: Charging Station}
+\label{subsec:proefopstelling-charging-station}
+
+In deze flow worden alle requests van de laadpaal afgehandeld. Zo wordt voor elke GET-request de waarde opgehaald via het modbus protocol en opgeslagen in een globale variabele. De waarde van de globale variabele wordt dan opgeroepen en in een JSON object gestoken, zodat dit JSON object teruggestuurd kan worden.\\
+
+De POST-requests krijgen een body mee, vanuit de webapplicatie, aan de hand van deze body wordt de juiste waarde doorgegeven aan de laadpaal zijn register. Zodat de laadpaal aangestuurd kan worden.
