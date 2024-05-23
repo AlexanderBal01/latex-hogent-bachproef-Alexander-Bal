@@ -36,3 +36,9 @@ Deze flow wordt gebruikt voor het ophalen van het huidige energieverbruik, de hu
 In deze flow worden alle requests van de laadpaal afgehandeld. Zo wordt voor elke GET-request de waarde opgehaald via het modbus protocol en opgeslagen in een globale variabele. De waarde van de globale variabele wordt dan opgeroepen en in een JSON object gestoken, zodat dit JSON object teruggestuurd kan worden.\\
 
 De POST-requests krijgen een body mee, vanuit de webapplicatie, aan de hand van deze body wordt de juiste waarde doorgegeven aan de laadpaal zijn register. Zodat de laadpaal aangestuurd kan worden.
+
+\subsection{Flow 4: Blower}
+\label{subsec:proefopstelling-blower}
+Deze flow dient voor het aansturen van het beluchtingssysteem van het water. Zo zijn er 2 requests die afgehandeld moeten worden, namelijk 1 GET-request en 1 POST-request. De GET-request wordt gebruikt om te weten of het beluchtingssysteem ingeschakeld is.\\
+
+De POST-request krijgt een body mee, vanuit de webapplicatie, de waarde in deze body is een booleaanse waarde. Aan de hand van deze booleaanse waarde kan het beluchtingsysteem dan ingeschakeld worden.
