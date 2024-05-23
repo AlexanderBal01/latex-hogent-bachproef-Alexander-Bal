@@ -1,2 +1,54 @@
 \chapter{\IfLanguageName{dutch}{Testresultaten}{Test results}}%
 \label{ch:testresultaten}
+
+In dit hoofdstuk worden alle routes van de API getest en verbeterd als er fouten in zitten. Bij het testen van de API wordt er gekeken of deze aan bepaalde criteria voldoet. Deze criteria zijn:
+
+\begin{itemize}
+    \item De API is opgedeeld in verschillende routes.
+    \item Elke route stuurt een JSON object terug.
+    \item Routes met gevoelige data zijn niet publiek beschikbaar.
+\end{itemize}
+
+\section{Testen van de authenticatie flow}
+\label{sec:testresultaten-authenticatie}
+
+\subsection{Login}
+\label{subsec:testresultaten-login}
+
+Deze route geeft een JSON object terug als er een email wordt gezocht. Indien er geen email meegegeven is geeft deze route een error. De route kan niet afgeschermd worden, dus voldoet deze route aan alle testcriteria.
+
+\subsection{Gebruiker aanmaken}
+\label{subsec:testresultaten-gebruiker-aanmaken}
+
+Deze route geeft, indien een gebruiker aangemaakt is, een JSON object terug. Als het aanmaken van een gebruiker niet lukt, geeft deze route de fout weer. De route moet afgeschermd zijn, aangezien enkel actieve gebruikers nieuwe gebruikers kunnen aanmaken. Het afschermen van deze route gebeurde eerst niet en is aangepast dat dit wel gebeurd. Na de aanpassingen voldoet deze route aan alle testcriteria.
+
+\section{Testen van de electricity flow}
+\label{sec:testresultaten-electricity}
+
+\subsection{Status}
+\label{subsec:testresultaten-elektriciteit-status}
+
+Deze route geeft 3 waarden terug in een JSON object, deze waarden zijn: het huidig verbruik, de huidige opbrengst en de huidige import van energie. Deze route moet afgeschermd worden, omdat deze data bevat die niet iedereen mag zien. Dit gebeurde eerst niet en is aangepast zodat dit wel gebeurd. Na de aanpassingen voldoet deze route aan alle criteria.
+
+\section{Testen van de Charging station flow}
+\label{sec:testresultaten-charging-station}
+
+\subsection{Max current}
+\label{subsec:testresultaten-max-current}
+
+Deze route geeft de maximale stroom die de laadpaal mag gebruiken weer. De waarde die deze route teruggeeft wordt in een JSON object gestoken. Deze route moet afgeschermd worden aangezien deze gevoelige data bevat. Het afschermen van de route gebeurde eerst niet, dit is aangepast geweest. Na de aanpassingen voldoet deze route aan alle criteria.
+
+\subsection{Energy consumed sum}
+\label{subsec:testresultaten-energy-consumed-sum}
+
+Deze route geeft weer hoeveel energie de laadpaal op dat moment gebruikt. Deze waarde wordt in een JSON object gestoken. Deze route moet afgeschermd worden omdat deze gevoelige data bevat. Deze route voldoet aan alle criteria.
+
+\subsection{Mode}
+\label{subsec:testresultaten-mode}
+
+Deze route geeft weer in welke modus de laadpaal staat. Deze waarde wordt in een JSON object gestoken. Deze route moet afgeschermd worden, omdat aan de hand van de modus, er bepaalde informatie teruggevonden kan worden in de handleiding van de laadpaal. Het afschermen van de route is nog niet geïmplementeerd. Na deze aanpassing voldoet deze route aan alle criteria.
+
+\subsection{Temp}
+\label{subsec:testresultaten-temp}
+
+Deze route geeft de temperatuur in graden celsius van de laadpaal weer.Deze waarde wordt in een JSON object gestoken. Deze route moet niet afgeschermd worden, omdat de temperatuur van de laadpaal een niet belangrijk gegeven is. Deze route voldoet aan alle criteria.
