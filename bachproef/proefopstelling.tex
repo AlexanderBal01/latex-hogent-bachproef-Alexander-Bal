@@ -47,9 +47,36 @@ De POST-request krijgt een body mee, vanuit de webapplicatie, de waarde in deze 
 \subsection{Flow 5: Algoritmen}
 \label{subsec:proefopstelling-algoritmen}
 
-De laatste flow bevat de algoritmen om de bedrijfsprocessen automatisch aan te sturen. In deze flow zijn er 2 algoritmen aanwezig, het eerste algoritme zal de prioriteiten van de bedrijfsprocessen bepalen en in de databank stockeren. Nadien kan het tweede algoritme bepalen welke bedrijfsprocessen ingeschakeld kunnen worden, en deze dan inschakelen. 
+De laatste flow bevat de algoritmen om de bedrijfsprocessen automatisch aan te sturen. In deze flow zijn er 2 algoritmen aanwezig, het eerste algoritme zal de prioriteiten van de bedrijfsprocessen bepalen en in de databank stockeren. Nadien kan het tweede algoritme bepalen welke bedrijfsprocessen ingeschakeld kunnen worden, en deze dan inschakelen. In codefragment \ref{lst:prioriteitsalgoritme} wordt het prioriteitsalgoritme weergegeven.
+
+\begin{listing}[h!]
+    \begin{minted}[frame=single, linenos, numbers=left, breaklines]{js}
+        let elektriciteitStatus = flow.get("elektriciteitStatus");
+        let autoStatus = flow.get('autoStatus');
+        let prioriteit = {
+            "auto": 1,
+            "blower": 2
+        }
+    
+        if (elektriciteitStatus[0].huidigVerbruik < 0) {
+            if (elektriciteitStatus[0].huidigVerbruik < -14 && autoStatus[0].batterij < 60) {
+                prioriteit.auto = 1;
+                prioriteit.blower = 2;
+            } else {
+                prioriteit.blower = 1;
+                prioriteit.auto = 2;
+            }
+        }
+        msg.payload = prioriteit;
+    
+        return msg;
+    \end{minted}
+    \caption[prioriteitsalgoritme]{Dit algoritme bepaald de prioriteiten van de bedrijfsprocessen.}
+    \label{lst:prioriteitsalgoritme}
+\end{listing}
+
 
 \section{Ontwikkelen van de webapplicatie}
 \label{sec:proefopstelling-webapplicatie}
 
-De webapplicatie is ontwikkeld in React JS. De styling van de applicatie is gebeurd met Tailwind CSS. In de broncode van de applicatie worden verschillende thema packages gebruikt, de meest gebruikte packages zijn ShadCn UI en ChartJS. ShadCn UI is een libary met verschillende componenten, deze componenten kunnen verder gepersonaliseerd worden met Tailwind CSS. ChartJS wordt gebruikt om de grafiek van het elektriciteitsverbruik te genereren.\\
+De webapplicatie is ontwikkeld in React JS. De styling van de applicatie is gebeurd met Tailwind CSS. In de broncode van de applicatie worden verschillende thema packages gebruikt, de meest gebruikte packages zijn ShadCn UI en ChartJS. ShadCn UI is een libary met verschillende componenten, deze componenten kunnen verder gepersonaliseerd worden met Tailwind CSS. ChartJS wordt gebruikt om de grafiek van het elektriciteitsverbruik te genereren.
