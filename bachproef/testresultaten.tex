@@ -52,3 +52,36 @@ Deze route geeft weer in welke modus de laadpaal staat. Deze waarde wordt in een
 \label{subsec:testresultaten-temp}
 
 Deze route geeft de temperatuur in graden celsius van de laadpaal weer.Deze waarde wordt in een JSON object gestoken. Deze route moet niet afgeschermd worden, omdat de temperatuur van de laadpaal een niet belangrijk gegeven is. Deze route voldoet aan alle criteria.
+
+\subsection{1 or 3 phases}
+\label{subsec:testresultaten-1-or-3-phases}
+
+Deze route geeft weer of de laadpaal eenfasig of driefasig aan het laden is. Deze waarde wordt in een JSON object gestoken. De route moet afgeschermd zijn, omdat deze gevoelige data over de laadpaal weergeeft. De afscherming van deze route moet nog geïmplementeerd worden, eens dit gebeurd is, voldoet deze route aan alle criteria.
+
+\subsection{Auto status}
+\label{subsec:testresultaten-auto-status}
+
+Deze route geeft het batterijpercentage en het kilometer bereik van de auto weer. Deze waarden worden in een JSON object gestoken. De route moet afgeschermd worden, omdat deze gevoelige data over de auto weergeeft. De afscherming van deze route moet nog geïmplementeerd worden, eens dit gebeurd is, voldoet deze route aan alle criteria.
+
+\subsection{Update max current}
+\label{subsec:testresultaten-update-max-current}
+
+Deze route wordt gebruikt om de maximale stroom die de laadpaal mag gebruiken te wijzigen. Deze route geeft een JSON object terug met een melding, deze melding bevat of het wijzigen van deze waarde gelukt is. De route moet afgeschermd worden, omdat deze wijzigingen kan aanbrengen in de laadpaal. De afscherming van deze route moet nog geïmplementeerd worden, eens dit gebeurd is, voldoet deze route aan alle criteria.
+
+\subsection{update 1 or 3 phases}
+\label{subsec:testresultaten-update-1-or-3-phases}
+
+Deze route wordt gebruikt om te schakelen tussen eenfasig en driefasig laden. Deze route geeft een JSON object terug met een melding, deze melding bevat of het wijzigen van deze waarde gelukt is. De route moet afgeschermd worden, omdat deze wijzigingen kan aanbrengen in de laadpaal. De afscherming van deze route moet nog geïmplementeerd worden, eens dit gebeurd is, voldoet deze route aan alle criteria.
+
+\section{Testen van de Blower flow}
+\label{sec:testresultaten-blower}
+
+\subsection{Status}
+\label{subsec:testresultaten-blower-status}
+
+Deze route wordt gebruikt om de status van het beluchtingssysteem op te halen. Deze status wordt in een JSON object gestoken. De route moet afgeschermd worden, omdat deze gevoelige data over het beluchtingssysteem weergeeft. De afscherming van deze route moet nog geïmplementeerd worden, eens dit gebeurd is, voldoet deze route aan alle criteria.
+
+\subsection{Update status}
+\label{subsec:testresultaten-update-status}
+
+Deze route wordt gebruikt om de status van het beluchtingssysteem te wijzigen. Deze route geeft een JSON object terug met een melding, deze melding bevat of het wijzigen van deze waarde gelukt is. De route moet afgeschermd worden, omdat deze wijzigingen kan aanbrengen in de laadpaal. De afscherming van deze route moet nog geïmplementeerd worden, eens dit gebeurd is, voldoet deze route aan alle criteria.
